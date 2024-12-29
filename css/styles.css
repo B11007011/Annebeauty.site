@@ -1,0 +1,555 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #D4A5A5;       /* Soft rose pink - main brand color */
+  --color-primary-light: #F3E5E5;  /* Light pink - backgrounds */
+  --color-primary-dark: #9E7777;   /* Deep rose - accents */
+
+  /* Neutral Colors */
+  --color-bg: #FDFAFA;            /* Off-white background */
+  --color-text: #3D3D3D;          /* Dark gray for main text */
+  --color-text-light: #767676;    /* Medium gray for secondary text */
+  
+  /* Accent Colors */
+  --color-accent: #A68B7C;        /* Warm taupe - for special elements */
+  --color-accent-light: #E8DED5;  /* Light warm beige */
+  
+  /* UI Colors */
+  --color-border: #E8E8E8;        /* Light gray for borders */
+  --color-shadow: rgba(0,0,0,0.05); /* Subtle shadow */
+}
+
+/* Apply these colors to your existing classes */
+.navbar {
+  @apply bg-white border-b border-[var(--color-border)];
+}
+
+.primary-button {
+  @apply bg-[var(--color-primary)] 
+         hover:bg-[var(--color-primary-dark)]
+         text-white transition-colors;
+}
+
+.secondary-button {
+  @apply bg-[var(--color-accent-light)]
+         hover:bg-[var(--color-accent)]
+         text-[var(--color-text)] transition-colors;
+}
+
+/* Blog specific styles */
+.blog-card {
+  @apply bg-white rounded-lg overflow-hidden 
+         border border-[var(--color-border)]
+         transition duration-300 ease-in-out
+         hover:shadow-[0_4px_20px_var(--color-shadow)];
+}
+
+.blog-card h2 {
+  @apply text-[var(--color-text)] text-xl font-medium mb-3 
+         transition duration-200
+         group-hover:text-[var(--color-primary-dark)];
+}
+
+.blog-card p {
+  @apply text-[var(--color-text-light)] text-sm leading-relaxed;
+}
+
+.blog-card .date {
+  @apply text-sm text-[var(--color-text-light)];
+}
+
+/* Search styling */
+#searchInput {
+  @apply border-[var(--color-border)]
+         focus:border-[var(--color-primary)]
+         focus:ring-1 focus:ring-[var(--color-primary-light)];
+}
+
+/* General text styles */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-[var(--color-text)];
+}
+
+p {
+  @apply text-[var(--color-text-light)];
+}
+
+/* Links */
+a {
+  @apply text-[var(--color-primary-dark)]
+         hover:text-[var(--color-primary)]
+         transition-colors;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  @apply text-[var(--color-text-light)]
+         hover:text-[var(--color-primary)];
+}
+
+/* Call to action sections */
+.cta-section {
+  @apply bg-[var(--color-primary-light)]
+         text-[var(--color-text)];
+}
+
+/* Footer */
+.footer {
+  @apply bg-white py-16 border-t border-[var(--color-border)];
+}
+
+.footer-container {
+  @apply max-w-7xl mx-auto px-6 lg:px-8
+         grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 
+         gap-12 lg:gap-8;
+}
+
+/* Logo Section */
+.footer-logo-section {
+  @apply col-span-1 lg:col-span-1;
+}
+
+.footer-logo {
+  @apply text-2xl font-bold mb-4
+         text-[var(--color-text)]
+         hover:text-[var(--color-primary)]
+         transition-all duration-300;
+}
+
+.footer-description {
+  @apply text-[var(--color-text-light)] mb-6
+         text-sm leading-relaxed;
+}
+
+.social-links {
+  @apply flex items-center space-x-4;
+}
+
+.social-link {
+  @apply w-10 h-10 rounded-full
+         flex items-center justify-center
+         border border-[var(--color-border)]
+         text-[var(--color-text-light)]
+         hover:bg-[var(--color-primary)]
+         hover:border-[var(--color-primary)]
+         hover:text-white
+         transition-all duration-300
+         transform hover:scale-110;
+}
+
+/* Quick Links Section */
+.footer-section {
+  @apply space-y-4;
+}
+
+.footer-title {
+  @apply text-lg font-semibold mb-6
+         text-[var(--color-text)]
+         uppercase tracking-wider;
+}
+
+.footer-links {
+  @apply space-y-3;
+}
+
+.footer-link {
+  @apply block text-[var(--color-text-light)]
+         hover:text-[var(--color-primary)]
+         transition-colors duration-200
+         text-sm;
+}
+
+/* Services Section */
+.services-list {
+  @apply space-y-3;
+}
+
+.service-item {
+  @apply text-sm text-[var(--color-text-light)]
+         hover:text-[var(--color-primary)]
+         transition-colors duration-200;
+}
+
+/* Contact Section */
+.contact-info {
+  @apply space-y-4;
+}
+
+.contact-item {
+  @apply flex items-start space-x-3;
+}
+
+.contact-icon {
+  @apply w-5 h-5 mt-0.5
+         text-[var(--color-primary)];
+}
+
+.contact-text {
+  @apply text-sm text-[var(--color-text-light)]
+         hover:text-[var(--color-primary)]
+         transition-colors duration-200;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  @apply mt-16 pt-8 border-t border-[var(--color-border)]
+         text-center text-sm text-[var(--color-text-light)];
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer-container {
+    @apply grid-cols-1 gap-10;
+  }
+  
+  .footer-logo-section {
+    @apply text-center;
+  }
+  
+  .social-links {
+    @apply justify-center;
+  }
+  
+  .footer-section {
+    @apply text-center;
+  }
+  
+  .contact-info {
+    @apply flex flex-col items-center;
+  }
+  
+  .contact-item {
+    @apply justify-center;
+  }
+}
+
+/* Blog Search */
+.search-container {
+  @apply max-w-md mx-auto mb-8;
+}
+
+#searchInput {
+  @apply w-full px-4 py-2 
+         border border-gray-200 rounded 
+         focus:outline-none focus:border-gray-400 
+         transition duration-200;
+}
+
+#searchResults {
+  @apply mt-4 space-y-4 bg-white rounded-lg shadow-sm;
+}
+
+#searchResults .blog-card {
+  @apply p-4 border-b border-gray-100 last:border-b-0;
+}
+
+#searchResults h3 {
+  @apply text-lg font-medium mb-2;
+}
+
+#searchResults p {
+  @apply text-gray-600 text-sm;
+}
+
+#searchResults .post-date {
+  @apply text-xs text-gray-400 mt-2;
+}
+
+/* Blog Grid */
+.blog-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mt-8;
+}
+
+/* Blog Card */
+.blog-card {
+  @apply bg-white rounded-lg overflow-hidden 
+         transition duration-300 ease-in-out
+         hover:shadow-md;
+}
+
+.blog-card .image-container {
+  @apply aspect-[4/3] overflow-hidden;
+}
+
+.blog-card img {
+  @apply w-full h-full object-cover
+         transition duration-500 ease-in-out
+         group-hover:scale-105;
+}
+
+.blog-card .content {
+  @apply p-6;
+}
+
+.blog-card .date {
+  @apply text-sm text-gray-400 mb-2;
+}
+
+.blog-card h2 {
+  @apply text-xl font-medium mb-3 
+         transition duration-200
+         group-hover:text-primary;
+}
+
+.blog-card p {
+  @apply text-gray-600 text-sm leading-relaxed 
+         line-clamp-3;
+}
+
+.blog-card .footer {
+  @apply mt-4 pt-4 border-t border-gray-100
+         flex justify-between items-center;
+}
+
+.blog-card .comments {
+  @apply text-sm text-gray-400;
+}
+
+.blog-card .arrow {
+  @apply text-gray-400 transition duration-200
+         group-hover:translate-x-2
+         group-hover:text-primary;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+  .blog-grid {
+    @apply gap-10;
+  }
+  
+  .blog-card h2 {
+    @apply text-2xl;
+  }
+  
+  .blog-card p {
+    @apply text-base;
+  }
+} 
+
+/* Navigation styles - Updated */
+.nav-link {
+  @apply relative px-6 py-3 text-lg font-medium
+         transition-all duration-300
+         hover:text-[var(--color-primary)]
+         uppercase tracking-wider;
+}
+
+/* Underline effect - Made more visible */
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 
+         w-0 h-[3px] -translate-x-1/2
+         bg-[var(--color-primary)]
+         transition-all duration-300 ease-out;
+}
+
+.nav-link:hover::after {
+  @apply w-4/5;
+}
+
+/* Active nav link - More prominent */
+.nav-link.active {
+  @apply text-[var(--color-primary-dark)]
+         font-semibold;
+}
+
+.nav-link.active::after {
+  @apply w-4/5 bg-[var(--color-primary-dark)]
+         h-[3px];
+}
+
+/* Language selector - More prominent */
+.lang-button {
+  @apply px-5 py-2 ml-6
+         border-2 border-[var(--color-primary)] 
+         rounded-lg
+         text-[var(--color-primary)] 
+         font-semibold text-lg
+         hover:bg-[var(--color-primary)] 
+         hover:text-white
+         transition-all duration-300
+         transform hover:scale-105;
+}
+
+/* Navigation container - Better spacing */
+.nav-container {
+  @apply flex items-center justify-between
+         px-8 py-5 max-w-7xl mx-auto;
+}
+
+/* Navigation links container - More space between items */
+.nav-links {
+  @apply flex items-center space-x-10;
+}
+
+/* Mobile menu button - More visible */
+.mobile-menu-button {
+  @apply p-3 rounded-lg
+         text-[var(--color-text)]
+         hover:bg-[var(--color-primary-light)]
+         transition-all duration-300
+         md:hidden
+         border border-[var(--color-border)];
+}
+
+/* Mobile menu - Enhanced */
+.mobile-menu {
+  @apply fixed top-0 right-0 h-full w-72
+         bg-white shadow-xl
+         transform transition-transform duration-300
+         md:hidden
+         border-l border-[var(--color-border)];
+}
+
+.mobile-menu.open {
+  @apply translate-x-0;
+}
+
+.mobile-menu.closed {
+  @apply translate-x-full;
+}
+
+/* Mobile menu links - Better styling */
+.mobile-nav-link {
+  @apply block px-8 py-4
+         text-[var(--color-text)] text-lg
+         hover:bg-[var(--color-primary-light)]
+         transition-all duration-300
+         border-b border-[var(--color-border)]
+         uppercase tracking-wide;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    @apply hidden;
+  }
+  
+  .mobile-menu-button {
+    @apply block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    @apply hidden;
+  }
+  
+  .nav-link {
+    @apply text-base px-6 py-4;
+  }
+  
+  .lang-button {
+    @apply px-6 py-2.5 text-base;
+  }
+}
+
+/* Add these hover effects for better interactivity */
+.nav-link:hover {
+  @apply text-[var(--color-primary)];
+}
+
+.mobile-nav-link:hover {
+  @apply text-[var(--color-primary)];
+}
+
+/* Active states */
+.nav-link.active,
+.mobile-nav-link.active {
+  @apply font-semibold;
+}
+
+/* Logo styles - Bigger and more prominent */
+.logo {
+  @apply text-2xl font-bold
+         text-[var(--color-text)]
+         hover:text-[var(--color-primary)]
+         transition-all duration-300;
+}
+
+/* Header container - More prominent */
+.header-container {
+  @apply sticky top-0 z-50 
+         bg-white/95 backdrop-blur-md
+         border-b border-[var(--color-border)]
+         transition-all duration-300
+         shadow-sm;
+}
+
+/* Scrolled header state - Enhanced */
+.header-scrolled {
+  @apply shadow-md bg-white/98;
+}
+
+/* Mobile menu button - More visible */
+.mobile-menu-button {
+  @apply p-3 rounded-lg
+         text-[var(--color-text)]
+         hover:bg-[var(--color-primary-light)]
+         transition-all duration-300
+         md:hidden
+         border border-[var(--color-border)];
+}
+
+/* Mobile menu - Enhanced */
+.mobile-menu {
+  @apply fixed top-0 right-0 h-full w-72
+         bg-white shadow-xl
+         transform transition-transform duration-300
+         md:hidden
+         border-l border-[var(--color-border)];
+}
+
+.mobile-menu.open {
+  @apply translate-x-0;
+}
+
+.mobile-menu.closed {
+  @apply translate-x-full;
+}
+
+/* Mobile menu links - Better styling */
+.mobile-nav-link {
+  @apply block px-8 py-4
+         text-[var(--color-text)] text-lg
+         hover:bg-[var(--color-primary-light)]
+         transition-all duration-300
+         border-b border-[var(--color-border)]
+         uppercase tracking-wide;
+}
+
+/* Responsive adjustments */
+@media (min-width: 769px) {
+  .nav-link {
+    @apply text-base px-6 py-4;
+  }
+  
+  .lang-button {
+    @apply px-6 py-2.5 text-base;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    @apply text-lg;
+  }
+  
+  .nav-container {
+    @apply px-12 py-6;
+  }
+  
+  .nav-links {
+    @apply space-x-12;
+  }
+} 
+
+body {
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Add specific styles for Chinese text if needed */
+.chinese-text {
+  font-weight: 400;
+  letter-spacing: 0.025em;
+} 
