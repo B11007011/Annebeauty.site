@@ -16,13 +16,24 @@ function BlogPost() {
         const posts = await response.json();
         if (posts.length > 0) {
           const post = posts[0];
-          console.log('Fetched post:', post); // Debug log
+          console.log('Raw WordPress post:', post); // Log the raw post data
+          console.log('Featured media data:', post._embedded?.['wp:featuredmedia']?.[0]); // Log featured media data
+          
+          // Try different ways to get the media URL
+          const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0];
+          const mediaUrl = featuredMedia?.source_url || 
+                          featuredMedia?.media_details?.sizes?.full?.source_url ||
+                          featuredMedia?.media_details?.sizes?.large?.source_url ||
+                          featuredMedia?.guid?.rendered;
+          
+          console.log('Selected media URL:', mediaUrl); // Log the selected media URL
+
           setPost({
             ...post,
             title: post.title.rendered,
             content: post.content.rendered,
             excerpt: post.excerpt.rendered,
-            featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+            featured_media: mediaUrl
           });
           
           // If post has categories, fetch recommended posts
@@ -46,12 +57,22 @@ function BlogPost() {
             .filter(p => p.id !== currentPostId)
             .sort(() => 0.5 - Math.random())
             .slice(0, 2)
-            .map(post => ({
-              ...post,
-              title: post.title.rendered,
-              excerpt: post.excerpt.rendered,
-              featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url
-            }));
+            .map(post => {
+              const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0];
+              const mediaUrl = featuredMedia?.source_url || 
+                             featuredMedia?.media_details?.sizes?.full?.source_url ||
+                             featuredMedia?.media_details?.sizes?.large?.source_url ||
+                             featuredMedia?.guid?.rendered;
+              
+              console.log('Recommended post media URL:', mediaUrl); // Log recommended post media URL
+              
+              return {
+                ...post,
+                title: post.title.rendered,
+                excerpt: post.excerpt.rendered,
+                featured_media: mediaUrl
+              };
+            });
           setRecommendedPosts(shuffled);
         }
       } catch (error) {
@@ -91,11 +112,23 @@ function BlogPost() {
 
       <div className="container mx-auto px-4 py-12">
         <nav className="mb-12 flex items-center space-x-2 text-sm">
-          <Link to="/" className="text-gray-500 hover:text-[#C4A86D]">首頁</Link>
-          <span className="text-gray-400">/</span>
-          <Link to="/blog" className="text-gray-500 hover:text-[#C4A86D]">部落格</Link>
-          <span className="text-gray-400">/</span>
-          <span className="text-[#C4A86D]">{post?.title}</span>
+          {[
+            { key: 'home', to: '/', text: '首頁' },
+            { key: 'separator1', text: '/', isSpan: true },
+            { key: 'blog', to: '/blog', text: '部落格' },
+            { key: 'separator2', text: '/', isSpan: true },
+            { key: 'current', text: post?.title, isSpan: true }
+          ].map(item => (
+            item.isSpan ? (
+              <span key={item.key} className={item.key.includes('separator') ? 'text-gray-400' : 'text-[#C4A86D]'}>
+                {item.text}
+              </span>
+            ) : (
+              <Link key={item.key} to={item.to} className="text-gray-500 hover:text-[#C4A86D]">
+                {item.text}
+              </Link>
+            )
+          ))}
         </nav>
 
         <article className="max-w-3xl mx-auto">
@@ -122,14 +155,14 @@ function BlogPost() {
               dangerouslySetInnerHTML={{ __html: post?.title }} 
             />
             <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-              <div className="flex items-center">
+              <div key="author" className="flex items-center">
                 <div className="w-8 h-8 rounded-full bg-[#FCF2EF] flex items-center justify-center mr-2">
                   <span className="text-[#C4A86D]">AN</span>
                 </div>
                 <span>Anne Nails</span>
               </div>
-              <span>•</span>
-              <span>閱讀時間 {post?.content ? Math.ceil(post.content.length / 500) : 0} 分鐘</span>
+              <span key="dot" className="text-gray-400">•</span>
+              <span key="readTime">閱讀時間 {post?.content ? Math.ceil(post.content.length / 500) : 0} 分鐘</span>
             </div>
             <div className="w-24 h-[1px] bg-[#C4A86D] mx-auto mt-8"></div>
           </header>
@@ -145,18 +178,21 @@ function BlogPost() {
             <h3 className="text-lg mb-4">分享此文：</h3>
             <div className="flex space-x-4">
               <button 
+                key="facebook"
                 onClick={() => handleShare('facebook')}
                 className="flex items-center px-4 py-2 bg-[#1877F2] text-white rounded hover:bg-opacity-90"
               >
                 <span>Facebook</span>
               </button>
               <button 
+                key="twitter"
                 onClick={() => handleShare('twitter')}
                 className="flex items-center px-4 py-2 bg-[#1DA1F2] text-white rounded hover:bg-opacity-90"
               >
                 <span>Twitter</span>
               </button>
               <button 
+                key="line"
                 onClick={() => handleShare('line')}
                 className="flex items-center px-4 py-2 bg-[#00B900] text-white rounded hover:bg-opacity-90"
               >
@@ -165,59 +201,38 @@ function BlogPost() {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 pt-8 mb-12">
-            <h3 className="text-lg mb-6">發表留言</h3>
-            <form className="space-y-4">
-              <div>
-                <textarea 
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#C4A86D] focus:border-transparent"
-                  rows="4"
-                  placeholder="發表迴響..."
-                ></textarea>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="flex space-x-4">
-                  <input 
-                    type="text" 
-                    placeholder="名稱"
-                    className="p-2 border border-gray-200 rounded focus:ring-2 focus:ring-[#C4A86D] focus:border-transparent"
-                  />
-                  <input 
-                    type="email" 
-                    placeholder="電子郵件"
-                    className="p-2 border border-gray-200 rounded focus:ring-2 focus:ring-[#C4A86D] focus:border-transparent"
-                  />
-                </div>
-                <button 
-                  type="submit"
-                  className="px-6 py-2 bg-[#C4A86D] text-white rounded hover:bg-opacity-90"
-                >
-                  發表迴響
-                </button>
-              </div>
-            </form>
-          </div>
-
           <div className="border-t border-gray-200 pt-8">
             <div className="flex justify-between">
-              {post.previous && (
-                <Link 
-                  to={`/blog/${post.previous.slug}`}
+              {[
+                post.previous && {
+                  key: 'prev',
+                  to: `/blog/${post.previous.slug}`,
+                  content: (
+                    <>
+                      <span className="mr-2">←</span>
+                      <span>上一篇</span>
+                    </>
+                  )
+                },
+                post.next && {
+                  key: 'next',
+                  to: `/blog/${post.next.slug}`,
+                  content: (
+                    <>
+                      <span>下一篇</span>
+                      <span className="ml-2">→</span>
+                    </>
+                  )
+                }
+              ].filter(Boolean).map(nav => (
+                <Link
+                  key={nav.key}
+                  to={nav.to}
                   className="text-[#C4A86D] hover:underline inline-flex items-center"
                 >
-                  <span className="mr-2">←</span>
-                  上一篇
+                  {nav.content}
                 </Link>
-              )}
-              {post.next && (
-                <Link 
-                  to={`/blog/${post.next.slug}`}
-                  className="text-[#C4A86D] hover:underline inline-flex items-center"
-                >
-                  下一篇
-                  <span className="ml-2">→</span>
-                </Link>
-              )}
+              ))}
             </div>
           </div>
 
@@ -225,54 +240,54 @@ function BlogPost() {
             <div className="mt-16 pt-12 border-t border-gray-200">
               <h2 className="text-2xl text-center mb-8">推薦閱讀</h2>
               <div className="grid md:grid-cols-2 gap-8">
-                {recommendedPosts.map(recommendedPost => (
-                  <Link 
-                    to={`/blog/${recommendedPost.slug}`}
-                    key={recommendedPost.ID}
-                    className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
-                    onClick={() => {
-                      window.location.href = `/blog/${recommendedPost.slug}`;
-                    }}
-                  >
-                    <article className="flex flex-col h-full">
-                      {(recommendedPost.featured_image || recommendedPost.featured_media) && (
-                        <div className="relative h-48 overflow-hidden rounded-t-lg">
-                          <img 
-                            src={recommendedPost.featured_image || recommendedPost.featured_media}
-                            alt={recommendedPost.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
-                        </div>
-                      )}
-                      <div className="p-6 flex flex-col flex-grow">
-                        <div className="flex items-center mb-4">
-                          <div className="w-8 h-8 rounded-full bg-[#FCF2EF] flex items-center justify-center mr-2">
-                            <span className="text-[#C4A86D] text-sm">AN</span>
+                {recommendedPosts.map(post => {
+                  const postId = `recommended-${post.id}`;
+                  return (
+                    <Link 
+                      key={postId}
+                      to={`/blog/${post.slug}`}
+                      className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                    >
+                      <article>
+                        {(post.featured_image || post.featured_media) && (
+                          <div className="relative h-48 overflow-hidden rounded-t-lg">
+                            <img 
+                              src={post.featured_image || post.featured_media}
+                              alt={post.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
                           </div>
-                          <div>
-                            <span className="text-sm text-gray-500">
-                              {new Date(recommendedPost.date).toLocaleDateString('zh-TW')}
+                        )}
+                        <div className="p-6 flex flex-col flex-grow">
+                          <div className="flex items-center mb-4">
+                            <div className="w-8 h-8 rounded-full bg-[#FCF2EF] flex items-center justify-center mr-2">
+                              <span className="text-[#C4A86D] text-sm">AN</span>
+                            </div>
+                            <div>
+                              <span className="text-sm text-gray-500">
+                                {new Date(post.date).toLocaleDateString('zh-TW')}
+                              </span>
+                            </div>
+                          </div>
+                          <h3 
+                            className="text-lg font-medium mb-2 group-hover:text-[#C4A86D] transition-colors"
+                            dangerouslySetInnerHTML={{ __html: post.title }}
+                          />
+                          <div 
+                            className="text-sm text-gray-600 mb-4 line-clamp-2"
+                            dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                          />
+                          <div className="mt-auto">
+                            <span className="text-[#C4A86D] text-sm group-hover:underline">
+                              閱讀更多 →
                             </span>
                           </div>
                         </div>
-                        <h3 
-                          className="text-lg font-medium mb-2 group-hover:text-[#C4A86D] transition-colors"
-                          dangerouslySetInnerHTML={{ __html: recommendedPost.title }}
-                        />
-                        <div 
-                          className="text-sm text-gray-600 mb-4 line-clamp-2"
-                          dangerouslySetInnerHTML={{ __html: recommendedPost.excerpt }}
-                        />
-                        <div className="mt-auto">
-                          <span className="text-[#C4A86D] text-sm group-hover:underline">
-                            閱讀更多 →
-                          </span>
-                        </div>
-                      </div>
-                    </article>
-                  </Link>
-                ))}
+                      </article>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}

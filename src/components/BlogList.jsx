@@ -148,49 +148,57 @@ function BlogList() {
 
         {/* Blog Posts Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-          {paginatedPosts.map(post => (
-            <Link 
-              to={`/blog/${post.slug}`} 
-              key={post.id} 
-              className="block break-inside-avoid group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <article>
-                {post.featured_media ? (
+          {paginatedPosts.map(post => {
+            console.log('Rendering post:', post.id, 'Featured media:', post.featured_media);
+            return (
+              <Link 
+                to={`/blog/${post.slug}`} 
+                key={post.id} 
+                className="block break-inside-avoid group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <article>
                   <div className="relative overflow-hidden rounded-t-lg">
-                    <img 
-                      src={post.featured_media} 
-                      alt={post.title.rendered}
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
+                    {post.featured_media ? (
+                      <img 
+                        src={post.featured_media}
+                        alt={post.title.rendered}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => {
+                          console.error('Image failed to load:', post.featured_media);
+                          e.target.onerror = null;
+                          e.target.src = '/placeholder.jpg';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-48 bg-[#FCF2EF] flex items-center justify-center">
+                        <span className="text-[#E5D1CA] text-lg">Anne Nails</span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500" />
                   </div>
-                ) : (
-                  <div className="relative overflow-hidden rounded-t-lg bg-[#FCF2EF] h-48 flex items-center justify-center">
-                    <span className="text-[#E5D1CA] text-lg">Anne Nails</span>
-                  </div>
-                )}
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#FCF2EF] flex items-center justify-center mr-3">
-                      <span className="text-[#C4A86D] text-sm">AN</span>
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="w-10 h-10 rounded-full bg-[#FCF2EF] flex items-center justify-center mr-3">
+                        <span className="text-[#C4A86D] text-sm">AN</span>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-800">Anne Nails</p>
+                        <p className="text-gray-500 text-sm">
+                          {new Date(post.date).toLocaleDateString('zh-TW')}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-gray-800">Anne Nails</p>
-                      <p className="text-gray-500 text-sm">
-                        {new Date(post.date).toLocaleDateString('zh-TW')}
-                      </p>
-                    </div>
+                    <h2 className="text-xl font-semibold mb-2" 
+                      dangerouslySetInnerHTML={{ __html: post.title.rendered }} 
+                    />
+                    <div className="text-gray-600 mb-4" 
+                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                    />
                   </div>
-                  <h2 className="text-xl font-semibold mb-2" 
-                    dangerouslySetInnerHTML={{ __html: post.title.rendered }} 
-                  />
-                  <div className="text-gray-600 mb-4" 
-                    dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                  />
-                </div>
-              </article>
-            </Link>
-          ))}
+                </article>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Pagination */}

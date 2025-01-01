@@ -65,9 +65,9 @@ export const services = [
           "這種技術使用凝膠塗抹在自然指甲或延長指甲上。凝膠然後通過UV或LED燈固化。凝膠指甲以其持久性、自然外觀和光澤著稱。",
       },
       {
-        servicesListTitle: "壓克力指甲",
+        servicesListTitle: "專業美甲服務",
         servicesListDesc:
-          "壓克力是通過液體單體和粉末聚合物的結合來創造的，塗抹在指甲上以形成堅固、持久的表面。這種技術允許指甲長和創建不���的形狀。",
+          "我們提供多樣化的美甲服務，包括手部基礎保養、足部基礎保養、光療美甲、晶透指甲等。每項服務均由專業技師操作，採用高品質產品，讓您的指尖展現獨特魅力與時尚風采。",
       },
       {
         servicesListTitle: "法式美甲",
@@ -123,21 +123,26 @@ export const services = [
     ],
   },
   {
-    pageUrl: "edukacije",
+    pageUrl: "eyelash-extensions",
     servicesTitle: "美睫嫁接",
-    servicesDesc:
-      "通過我們專業設計的教育課程提升您的技能和知識，適合初學者和有經驗的專業人士。我們的課程涵蓋美容領域的最新技術和趨勢，從美甲和足部護理，到按摩和部理，再到高級永久化妝課程和其他多種療程。教育課程旨在通過互動式工作坊提供實用知識和經驗，由具有多年經驗的專業講師指導。與我們一起，您將不僅獲得理論知識還將獲得實技能，幫助您美容行業建立成功的職業生涯。",
+    servicesDesc: 
+      "我們專注於提供專業的美睫嫁接服務，讓您的雙眸更加迷人。從自然款到濃密款，我們根據您的需求量身設計睫毛造型，使用高品質材料和專業技術，確保舒適、安全和持久的效果。無論您想要日常的自然電眼，還是特別場合的華麗造型，我們都能滿足您的期待，帶給您自信和美麗。",
     servicesImg: educationsImg,
     servicesList: [
       {
-        servicesListTitle: "指甲技術課程",
+        servicesListTitle: "自然型睫毛嫁接",
         servicesListDesc:
-          "此課程涵蓋各種美甲和足部護理技術，包括凝膠、壓克力和其他相關技術的應用和維護。學員將學習這些技術的應用、維護和去除，以及安全措施和衛生。",
+          "以細緻手法打造輕盈自然的效果，適合日常妝容或偏愛低調美感的客人。",
       },
       {
-        servicesListTitle: "永久化妝課程",
+        servicesListTitle: "濃密型睫毛嫁接",
         servicesListDesc:
-          "此教育涵蓋永久化妝的所有方面，包括皮膚準備、色素選擇、應用技術和術後護理。課程提供實踐練習和維持質量的建議，確保達到持久效果。",
+          "提升睫毛濃密度，營造深邃迷人的眼神，適合需要加強眼妝效果的客人。",
+      },
+      {
+        servicesListTitle: "特殊造型睫毛嫁接",
+        servicesListDesc:
+          "針對特別場合設計獨特造型，讓您的眼妝更具戲劇性和個人特色。",
       },
     ],
     servicesGallery: [
@@ -163,12 +168,12 @@ export const counter = [
   },
   {
     counterNumber: "500",
-    counterTitle: "舉辦的培訓",
+    counterTitle: "完成的設計",
     counterDesc:
-      "我們組織了許多培訓和教育，幫助專業人士提升他們在美容領域的知識和技能。",
+      "我們為數百位顧客提供了專屬的美甲、美睫和紋繡設計，展現每一位顧客的獨特魅力。",
   },
   {
-    counterNumber: "25",
+    counterNumber: "10",
     counterTitle: "成立年數",
     counterDesc:
       "在美容世界中擁有多年經驗，我們培養了質量和穩定的傳統，提供卓越的服務。",
@@ -180,17 +185,17 @@ export const aboutSection = [
     aboutImg: aboutImg1,
     aboutTItle: "我們的故事",
     aboutDesc:
-      "一切始於超過25年前，當時Ljiljana Medović受到對美的熱情和為客戶創造獨特時刻的願望的啟發，開設了她的第一家沙龍。從那時起，我們每天都努力為每位客戶提供讓他們感到被關愛和滿意的體驗。多年來，我們成為質量和專業的代名詞。我們的沙龍以特別關注指甲護理和美化而聞名，包括製作沙龍指甲以及為指甲設計師和競賽者組織培訓。通過不斷的改進和跟隨美容行業的最新趨勢，我們能夠提供滿足最高標準的服務。",
+      "一切始於超過10年前，Anne 憑藉對美的熱情和為顧客創造獨特造型的願望，開設了第一家專業美甲美睫紋繡沙龍。自那時起，我們每天都努力提供讓顧客感到被關愛和滿足的卓越服務。多年來，Anne 已成為品質與專業的代名詞，以專注於美甲設計、美睫造型及精緻紋繡而聞名。我們通過不斷改進技術、引領美容潮流，為顧客提供符合最高標準的個性化服務，打造屬於您的專屬美麗。",
     altImg:
       "Ljiljana Medovic展示她的風格和專業精神的擺拍照片。",
   },
   {
     aboutImg: aboutImg2,
-    aboutTItle: "我們的願景",
+    aboutTitle: "我們的願景",
     aboutDesc:
-      "我們希望成為不僅僅是普通美容沙龍的地方——一個讓每���人都感到被珍視、受到啟發並在其美麗和獨特性中得到支持的地方我們相美來自內心，但心護理的外在形象也能增強自信和內心的平靜。因此，我們致力於不斷提升我們的技能，跟隨最新的趨勢並使用最高質量的產品。我們將繼續通過專業、奉獻和溫暖的氛圍建立信任，讓每個人都感覺像在家一樣。",
+      "我們的願景是成為不僅僅是普通美容沙龍，而是一個讓每位顧客感到被珍視、啟發，並在美麗與獨特中得到支持的地方。我們相信美麗源自內心，但外在形象的提升能增強自信與內在平和。因此，我們不斷精進技術，緊跟潮流，並使用最高品質的產品。我們致力於以專業、奉獻和溫暖的氛圍贏得信任，讓每位顧客都感覺賓至如歸。",
     altImg:
-      "特寫鏡頭展示長而精心設計的壓克力指甲的手放在證書上。",
+      "特寫展示一隻手，手上是精緻設計的壓克力美甲，背景放有美容證書。",
   },
 ];
 
@@ -232,7 +237,7 @@ export const socialLinks = [
     alt: "Instagram圖標",
   },
   {
-    url: "https://line.me/ti/p/YOUR_LINE_ID",
+    url: "https://line.me/R/ti/p/@mxn8805y",
     icon: FaLine,
     ariaLabel: "加入Line好友",
     alt: "Line圖標",
@@ -263,7 +268,7 @@ export const blogPosts = [
 export const lineQRCodeData = {
   image: lineQRCode,
   alt: "掃描加入Line好友",
-  lineId: "@0981606455",
+  lineId: "@mxn8805y",
 };
 
 export const translations = {
@@ -331,3 +336,5 @@ export const translations = {
 export const getTranslation = (language, key) => {
   return translations[language]?.[key] || key;
 };
+
+const someArray = [educationsImg, galleryManicure1];

@@ -1,93 +1,169 @@
-import { Link } from "react-router-dom";
-import { navLinks, services, contactInfo, socialLinks } from "../data";
+import { Link, useLocation } from "react-router-dom";
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaCalendarAlt, FaFacebookF, FaInstagram, FaChevronRight } from 'react-icons/fa';
+import { SiLine } from 'react-icons/si';
+import { useConfig } from '../context/ConfigContext';
 
 export default function Footer() {
+  const { config } = useConfig();
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
+
+  if (!config) return null;
+
+  // Define quick links
+  const quickLinks = [
+    { name: '首頁', url: '/' },
+    { name: '服務項目', url: '/usluge' },
+    { name: '關於我們', url: '/o-nama' },
+    { name: '部落格', url: '/blog' },
+    { name: '聯絡我們', url: '/kontakt' }
+  ];
+
+  // Define services with correct URLs
+  const services = [
+    { name: '美甲', url: '/usluge/manikir' },
+    { name: '半永久紋繡', url: '/usluge/trajna-sminka' },
+    { name: '美睫嫁接', url: '/usluge/edukacije' }
+  ];
 
   return (
-    <footer className="bg-gray-100 text-center py-10">
-      <div className="wrapper">
-        <div className="flex justify-between flex-col sm:flex-row sm:flex-wrap gap-6 py-[50px] lg:py-[100px] border-b border-gray-300">
-          
-          {/* Logo and Description Section */}
-          <div className="max-w-[335px]">
-            <Link className="logo" to="/" aria-label="Nail Design Ljiljana Medović Home">
-              <img  src="/logo.svg" alt="Nail Design Ljiljana Medović logo" />
+    <footer className="bg-white">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand Section */}
+          <div className="col-span-1">
+            <Link to="/" className="block mb-6">
+              <img 
+                src={config.images?.logo} 
+                alt={config.siteInfo?.name} 
+                className="h-12 w-auto"
+              />
             </Link>
-            <div className="mt-4 mb-5">
-              歡迎來到我們位於尼什市中心的美麗與優雅角落，您的滿意和護理是我們的首要任務。
-            </div>
-            <ul className="flex gap-4">
-              {socialLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    className="group h-[50px] w-[50px] flex justify-center items-center rounded-full border border-black hover:bg-black duration-200"
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.ariaLabel}
-                  >
-                    <link.icon className="text-xl group-hover:text-white duration-200"/>
-                  </a>
-                </li>
+            <p className="text-gray-600 mb-6">
+              {config.siteInfo?.description}
+            </p>
+            <div className="flex gap-4">
+              {config.socialLinks?.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.ariaLabel}
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#C4A86D] hover:text-white transition-all duration-300"
+                >
+                  {link.platform === 'facebook' && <FaFacebookF className="text-lg" />}
+                  {link.platform === 'instagram' && <FaInstagram className="text-lg" />}
+                  {link.platform === 'line' && <SiLine className="text-lg" />}
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Navigation Links Section */}
-          <nav aria-label="快速連結">
-            <h2 className="mb-4 text-xl font-serif">快速連結</h2>
-            <ul className="flex flex-wrap gap-2 sm:flex-col">
-              {navLinks.map((link, index) => (
-                <li key={index}>
-                  <Link className="hover:underline capitalize" to={link.url} aria-label={link.name}>
-                  {link.name}
+          {/* Quick Links Section */}
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold mb-4">快速連結</h3>
+            <nav className="flex flex-col space-y-3">
+              {quickLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.url}
+                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                >
+                  <FaChevronRight className="mr-2 text-xs" />
+                  <span>{link.name}</span>
                 </Link>
-                </li>
               ))}
-            </ul>
-          </nav>
+            </nav>
+          </div>
 
           {/* Services Section */}
-          <nav aria-label="服務">
-            <h2 className="mb-4 text-xl font-serif">服務</h2>
-            <ul className="flex flex-wrap gap-2 sm:flex-col">
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold mb-4">服務項目</h3>
+            <nav className="flex flex-col space-y-3">
               {services.map((service, index) => (
-                <li key={index}>
-                  <Link className="capitalize hover:underline" to={`/usluge/${service.pageUrl}`} aria-label={`查看${service.servicesTitle}`}>
-                  {service.servicesTitle}
+                <Link
+                  key={index}
+                  to={service.url}
+                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                  onClick={(e) => {
+                    if (service.url.includes('#')) {
+                      e.preventDefault();
+                      const id = service.url.split('#')[1];
+                      const element = document.getElementById(id);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = service.url;
+                      }
+                    }
+                  }}
+                >
+                  <FaChevronRight className="mr-2 text-xs" />
+                  <span>{service.name}</span>
                 </Link>
-                </li>
               ))}
-            </ul>
-          </nav>
+            </nav>
+          </div>
 
-          <section aria-labelledby="contact-info">
-            <h2 id="contact-info" className="mb-4 text-xl font-serif">
-              聯絡資訊
-            </h2>
-            <ul className="flex flex-col space-y-2">
-              {contactInfo.map((contact, index) => (
-                <li key={index}>
-                  <a className="hover:underline" href={contact.info} aria-label={`通過${contact.name}聯絡我們`}>
-                  {contact.name}
-                </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {/* Contact Section */}
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold mb-4">聯絡資訊</h3>
+            <div className="space-y-4">
+              <a 
+                href={`tel:${config.contactInfo?.phone}`}
+                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+              >
+                <FaPhone className="mr-3" />
+                <span>{config.contactInfo?.phone}</span>
+              </a>
+              
+              <a 
+                href={`mailto:${config.contactInfo?.email}`}
+                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+              >
+                <FaEnvelope className="mr-3" />
+                <span>{config.contactInfo?.email}</span>
+              </a>
+              
+              <a 
+                href={config.contactInfo?.googleMapUrl}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+              >
+                <FaMapMarkerAlt className="mr-3" />
+                <span>{config.contactInfo?.address}</span>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="py-10 sm:text-center">
-          &copy; {currentYear} Nails Design Anne-美甲美睫. 設計者&nbsp;
-          <a
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Brian Nguyen
-          </a>
+        {/* Copyright Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <p className="text-center text-gray-500">
+            &copy; {currentYear} {config.siteInfo?.name}. 設計者{" "}
+            <a 
+              href="mailto:nguyenvanqui291@gmail.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#C4A86D] hover:underline"
+            >
+              Brian Nguyen
+            </a>
+          </p>
         </div>
+
+        {/* Fixed CTA Button */}
+        <Link 
+          to="/kontakt" 
+          className="fixed bottom-6 right-6 bg-[#C4A86D] text-white px-6 py-3 rounded-full flex items-center shadow-lg hover:bg-[#B39A5F] transition-colors"
+        >
+          <FaCalendarAlt className="mr-2" />
+          <span>{config.appointmentInfo?.buttonText || '預約諮詢'}</span>
+        </Link>
       </div>
     </footer>
   );

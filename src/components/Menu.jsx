@@ -86,15 +86,6 @@ export default function Menu({ open, setOpen }) {
                     )}
                         </motion.li>
                     ))}
-                    <li>
-                        <Link 
-                            to="/blog" 
-                            onClick={() => setOpen(false)}
-                            className="block py-2 hover:text-primary transition-colors"
-                        >
-                            部落格
-                        </Link>
-                    </li>
                 </motion.ul>
             </motion.div>
         </>

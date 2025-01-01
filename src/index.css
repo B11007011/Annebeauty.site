@@ -4,6 +4,9 @@
 
 /* Base Styles */
 @layer base {
+  html {
+    @apply overflow-x-hidden;
+  }
   /* Typography */
   h1, h2, h3, h4 {
     @apply font-serif font-medium;
@@ -21,16 +24,16 @@
     @apply text-lg text-darkColor;
   }
   p {
-    line-height: 1.8; /* Improved readability */
+    line-height: 1.8;
     @apply text-base text-gray-700;
   }
 
   /* Layout */
   body {
-    @apply bg-offWhite font-sans text-darkColor text-[16px];
+    @apply bg-offWhite font-sans text-darkColor text-[16px] overflow-x-hidden w-full;
   }
   main {
-    @apply pt-[100px];
+    @apply pt-[100px] w-full;
   }
 
   /* Media */
@@ -48,7 +51,7 @@
 
   /* Layout */
   .wrapper {
-    @apply px-4 max-w-6xl mx-auto;
+    @apply px-4 max-w-6xl mx-auto w-full overflow-x-hidden;
   }
 
   /* Buttons */
@@ -56,7 +59,11 @@
     @apply px-8 py-4 border border-black flex items-center gap-2 capitalize text-center duration-200;
   }
   .btn-primary {
-    @apply bg-darkColor text-white hover:bg-transparent hover:text-darkColor;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-pink-500 text-white text-sm font-medium 
+    rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+  .btn-primary:hover {
+    @apply bg-pink-600;
   }
   .btn-outline {
     @apply bg-transparent text-darkColor hover:bg-darkColor hover:text-white;
@@ -247,5 +254,325 @@
     .blog-content h3 {
       @apply text-xl;
     }
+  }
+
+  /* Footer Styles */
+  .footer {
+    @apply relative bg-gradient-to-b from-white via-gray-50 to-gray-100 pt-16 pb-8;
+  }
+
+  .footer::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent;
+  }
+
+  .footer-content {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  .footer-top {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12 pb-12 border-b border-gray-200;
+  }
+
+  .footer-brand {
+    @apply lg:col-span-4;
+  }
+
+  .footer-logo {
+    @apply block mb-4;
+  }
+
+  .footer-logo img {
+    @apply h-16 w-auto;
+  }
+
+  .footer-description {
+    @apply text-gray-600 text-sm leading-relaxed mb-6;
+  }
+
+  .footer-social {
+    @apply flex gap-4 justify-center;
+  }
+
+  .footer-social a {
+    @apply w-9 h-9 flex items-center justify-center rounded-lg bg-white 
+    shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100;
+  }
+
+  .footer-social a svg {
+    @apply text-gray-500 text-lg transition-colors duration-300;
+  }
+
+  .footer-social a:hover {
+    @apply bg-pink-50 border-pink-100;
+  }
+
+  .footer-social a:hover svg {
+    @apply text-pink-500;
+  }
+
+  .footer-nav {
+    @apply lg:col-span-5 grid grid-cols-2 gap-8;
+  }
+
+  .footer-section {
+    @apply space-y-4;
+  }
+
+  .footer-section-title {
+    @apply text-sm font-semibold text-gray-900 uppercase tracking-wider;
+  }
+
+  .footer-links {
+    @apply space-y-3;
+  }
+
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgb(107, 114, 128);
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .footer-links a:hover {
+    color: rgb(236, 72, 153);
+  }
+
+  .footer-links a svg {
+    color: rgb(156, 163, 175);
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .footer-links a:hover svg {
+    color: rgb(236, 72, 153);
+  }
+
+  .footer-contact {
+    @apply lg:col-span-3;
+  }
+
+  .footer-contact-list {
+    @apply flex flex-col gap-3;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    min-height: 56px;
+    width: 100%;
+  }
+
+  .contact-item:hover {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgb(156 163 175);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-value {
+    font-size: 0.875rem;
+    color: rgb(55 65 81);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .contact-item:hover .contact-value {
+    color: rgb(236 72 153);
+  }
+
+  @media (max-width: 768px) {
+    .contact-item {
+      min-height: 48px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .contact-label {
+      font-size: 0.7rem;
+    }
+
+    .contact-value {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Social Links */
+  .social-link {
+    @apply w-11 h-11 flex items-center justify-center rounded-xl bg-white 
+    shadow-sm transition-all duration-300 border border-gray-100;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff758c 0%, #ff7eb3 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .social-link svg {
+    @apply text-xl relative z-10 text-gray-400 transition-all duration-300;
+  }
+
+  .social-link:hover {
+    @apply shadow-md border-pink-200;
+    transform: translateY(-2px);
+  }
+
+  .social-link:hover::before {
+    opacity: 0.1;
+  }
+
+  .social-link:hover svg {
+    @apply text-pink-500;
+  }
+
+  /* Specific hover colors for each platform */
+  .social-link.facebook:hover::before {
+    background: linear-gradient(45deg, #1877F2 0%, #45a1ff 100%);
+  }
+
+  .social-link.instagram:hover::before {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+
+  .social-link.line:hover::before {
+    background: linear-gradient(45deg, #00B900 0%, #00e600 100%);
+  }
+
+  .social-link.facebook:hover svg {
+    @apply text-[#1877F2];
+  }
+
+  .social-link.instagram:hover svg {
+    @apply text-[#E4405F];
+  }
+
+  .social-link.line:hover svg {
+    @apply text-[#00B900];
+  }
+
+  .footer-bottom {
+    @apply relative flex flex-col items-center justify-center text-center gap-6 pt-8;
+  }
+
+  .footer-copyright {
+    @apply text-sm text-gray-500 text-center w-full;
+  }
+
+  .footer-copyright a {
+    @apply text-gray-600 hover:text-pink-500 transition-colors duration-300;
+  }
+
+  /* Fixed Button */
+  .fixed-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(to right, rgb(236, 72, 153), rgb(219, 39, 119));
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .fixed-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 20px -3px rgba(236, 72, 153, 0.4);
+  }
+
+  .fixed-cta svg {
+    @apply text-lg mr-2;
+  }
+
+  @media (max-width: 768px) {
+    .fixed-cta {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8125rem;
+    }
+  }
+
+  /* Active link styles */
+  .active-link {
+    @apply text-pink-500 font-medium;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .footer {
+      @apply pt-12;
+    }
+    
+    .footer-top {
+      @apply grid-cols-1 gap-10;
+    }
+
+    .footer-nav {
+      @apply grid-cols-2;
+    }
+
+    .footer-bottom {
+      @apply text-center;
+    }
+  }
+
+  /* Tooltip styles */
+  .tooltip {
+    @apply relative inline-block;
+  }
+
+  .tooltip:before {
+    @apply content-[attr(data-tooltip)] absolute bottom-full left-1/2 transform -translate-x-1/2 
+    px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 invisible transition-all duration-200;
+  }
+
+  .tooltip:hover:before {
+    @apply opacity-100 visible mb-2;
+  }
+
+  /* Add specific class names to your buttons */
+  .btn-contact {
+    /* your styles */
   }
 }

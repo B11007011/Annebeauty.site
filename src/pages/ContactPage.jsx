@@ -13,7 +13,7 @@ export default function ContactPage() {
       <meta name="description" content="無論您對我們的服務有任何疑問或想預約您的下一次服務，我們都在這裡為您提供幫助。"/>
       <meta property="og:title" content="指甲設計 Anne-美甲美睫 | 聯絡我們" />
       <meta property="og:description" content="無論您對我們的服務有任何疑問或想預約您的下一次服務，我們都在這裡為您提供幫助。"/>
-      <meta property="og:url" content="https://naildesign-ljiljanamedovic.com/kontakt" />
+      <meta property="og:url" content="https://annebeauty.site/kontakt" />
       </Helmet>
       <Navbar/>
       <main>

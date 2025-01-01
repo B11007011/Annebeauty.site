@@ -7,7 +7,7 @@ export default function Intro() {
         <div className="wrapper sm:text-center">
             <div className='max-w-2xl mx-auto mb-[50px] sm:text-center'>
             <h2 className="mb-6">美甲設計沙龍</h2>
-            <p className="mb-4">歡迎來到我們位於尼什市中心的美麗與優雅角落。在我們的沙龍中，您的美麗是我們的首要任務。我們特別關注每一個美甲細節，讓您的指甲看起來完美無瑕。來訪我們，感受不同的護理體驗。</p>
+            <p className="mb-4">歡迎來到我們位於内湖區日式威廉旁邊的美麗與優的小店家。在我們的沙龍中，您的美麗是我們的首要任務。我們特別關注每一個美甲細節，讓您的指甲看起來完美無瑕。來訪我們，感受不同的護理體驗。</p>
             </div>
             <div className='flex flex-col md:flex-row relative'>
             <div className="aspect-video md:flex-1 border-offWhite mr-[50px] md:-mr-[50px] border-r-[16px] border-b-[16px] xl:border-r-[24px] xl:border-b-[24px] md:mb-[74px]">

@@ -9,41 +9,42 @@ import PageAnimation from "./components/PageAnimations";
 import BlogPage from "./pages/BlogPage";
 import { Helmet, HelmetProvider } from "react-helmet-async";  
 import { LanguageProvider } from './context/LanguageContext';
+import { ConfigProvider } from './context/ConfigContext';
 import Search from './components/Search';
 import BlogPost from './components/BlogPost';
+import ConfigEditor from './components/ConfigEditor';
+import AdminLogin from './components/AdminLogin';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const location = useLocation(); 
 
-  // This is example data - replace with your actual blog posts data
-  const blogPosts = [
-    {
-      title: "文章標題1",
-      content: "文章內容1..."
-    },
-    {
-      title: "文章標題2",
-      content: "文章內容2..."
-    }
-    // ... more posts
-  ];
-
   return (
     <HelmetProvider>
-      <LanguageProvider>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageAnimation><HomePage /></PageAnimation>} />
-            <Route path="/usluge" element={<PageAnimation><ServicesPage /></PageAnimation>} />
-            <Route path="/o-nama" element={<PageAnimation><AboutPage /></PageAnimation>} />
-            <Route path="/kontakt" element={<PageAnimation><ContactPage /></PageAnimation>} />
-            <Route path="/usluge/:title" element={<PageAnimation><ServicesPageDetails /></PageAnimation>} />
-            <Route path="/blog" element={<PageAnimation><BlogPage /></PageAnimation>} />
-            <Route path="/blog/:slug" element={<PageAnimation><BlogPost /></PageAnimation>} />
-          </Routes>
-        </AnimatePresence>
-        <Search posts={blogPosts} />
-      </LanguageProvider>
+      <ConfigProvider>
+        <LanguageProvider>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageAnimation><HomePage /></PageAnimation>} />
+              <Route path="/usluge" element={<PageAnimation><ServicesPage /></PageAnimation>} />
+              <Route path="/o-nama" element={<PageAnimation><AboutPage /></PageAnimation>} />
+              <Route path="/kontakt" element={<PageAnimation><ContactPage /></PageAnimation>} />
+              <Route path="/usluge/:title" element={<PageAnimation><ServicesPageDetails /></PageAnimation>} />
+              <Route path="/blog" element={<PageAnimation><BlogPage /></PageAnimation>} />
+              <Route path="/blog/:slug" element={<PageAnimation><BlogPost /></PageAnimation>} />
+              <Route path="/admin" element={<AdminLogin />} />
+              <Route 
+                path="/admin/config" 
+                element={
+                  <ProtectedRoute>
+                    <ConfigEditor />
+                  </ProtectedRoute>
+                } 
+              />
+            </Routes>
+          </AnimatePresence>
+        </LanguageProvider>
+      </ConfigProvider>
     </HelmetProvider>
   )
 }
