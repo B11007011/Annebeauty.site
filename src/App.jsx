@@ -15,6 +15,7 @@ import BlogPost from './components/BlogPost';
 import ConfigEditor from './components/ConfigEditor';
 import AdminLogin from './components/AdminLogin';
 import ProtectedRoute from './components/ProtectedRoute';
+import LiveChat from './components/LiveChat';
 
 function App() {
   const location = useLocation(); 
@@ -43,6 +44,7 @@ function App() {
               />
             </Routes>
           </AnimatePresence>
+          <LiveChat />
         </LanguageProvider>
       </ConfigProvider>
     </HelmetProvider>

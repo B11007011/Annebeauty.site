@@ -155,15 +155,6 @@ export default function Footer() {
             </a>
           </p>
         </div>
-
-        {/* Fixed CTA Button */}
-        <Link 
-          to="/kontakt" 
-          className="fixed bottom-6 right-6 bg-[#C4A86D] text-white px-6 py-3 rounded-full flex items-center shadow-lg hover:bg-[#B39A5F] transition-colors"
-        >
-          <FaCalendarAlt className="mr-2" />
-          <span>{config.appointmentInfo?.buttonText || '預約諮詢'}</span>
-        </Link>
       </div>
     </footer>
   );

@@ -86,30 +86,31 @@
   .social-icons {
     position: fixed;
     top: 50%;
-    right: 10px;
+    right: 25px;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    z-index: 899;
   }
 
   .social-icons a {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    color: #000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, color 0.3s;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    color: #666;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
   }
 
   .social-icons a:hover {
-    background-color: #f0f0f0;
+    transform: translateX(-5px);
+    background: #ff69b4;
+    color: white;
   }
 
   .social-icons a:nth-child(1) i {
@@ -497,42 +498,6 @@
     @apply text-gray-600 hover:text-pink-500 transition-colors duration-300;
   }
 
-  /* Fixed Button */
-  .fixed-cta {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 50;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(to right, rgb(236, 72, 153), rgb(219, 39, 119));
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: 9999px;
-    box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .fixed-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 20px -3px rgba(236, 72, 153, 0.4);
-  }
-
-  .fixed-cta svg {
-    @apply text-lg mr-2;
-  }
-
-  @media (max-width: 768px) {
-    .fixed-cta {
-      bottom: 1rem;
-      right: 1rem;
-      padding: 0.625rem 1.25rem;
-      font-size: 0.8125rem;
-    }
-  }
-
   /* Active link styles */
   .active-link {
     @apply text-pink-500 font-medium;
@@ -574,5 +539,18 @@
   /* Add specific class names to your buttons */
   .btn-contact {
     /* your styles */
+  }
+
+  /* Responsive adjustments for social icons */
+  @media (max-width: 768px) {
+    .social-icons {
+      right: 15px;
+    }
+    
+    .social-icons a {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+    }
   }
 }
