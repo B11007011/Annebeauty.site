@@ -45,15 +45,15 @@ import lineQRCode from "./assets/line-qr-code.jpg";
 
 export const navLinks = [
   { name: "首頁", url: "/" },
-  { name: "服務項目", url: "/usluge" },
-  { name: "關於我們", url: "/o-nama" },
-  { name: "聯絡我們", url: "/kontakt" },
+  { name: "服務項目", url: "/services" },
+  { name: "關於我們", url: "/about" },
+  { name: "聯絡我們", url: "/contact" },
   { name: "部落格", url: "/blog" },
 ];
 
 export const services = [
   {
-    pageUrl: "manikir",
+    pageUrl: "manicure",
     servicesTitle: "美甲",
     servicesDesc:
       "精緻且細心的指甲護理，包括按需求塑形、打磨以達到完美光滑、細緻的角質護理以保持健康和整潔的外觀，以及塗抹高品質的顏色指甲油。我們使用最好的技術和產品，讓您的指甲看起來完美無瑕且持久。除了美觀，指甲護理還有助於保持指甲和手部皮膚的健康，帶來清新和奢華的感覺。",
@@ -88,7 +88,7 @@ export const services = [
     ],
   },
   {
-    pageUrl: "trajna-sminka",
+    pageUrl: "permanent-makeup",
     servicesTitle: "半永久紋繡",
     servicesDesc:
       "我們的永久化妝服務包括精確的色素應用，用於定義眉毛、眼瞼和嘴唇，讓您在任何時候都擁有完美的外觀，無需每天化妝。我們使用最高品質的色素和最先進的技術，以達到自然和優雅的外觀，持續數月。通過我們的永久化妝，您每天都能自信滿滿地迎接新的一天，感受完美無瑕。",
@@ -272,36 +272,6 @@ export const lineQRCodeData = {
 };
 
 export const translations = {
-  sr: {
-    // Navigation
-    home: 'Početna',
-    services: 'Usluge',
-    about: 'O nama',
-    contact: 'Kontakt',
-    blog: 'Blog',
-
-    // Common buttons
-    readMore: 'Pročitaj više',
-    sendMessage: 'Pošalji poruku',
-    
-    // Home page
-    welcomeTitle: 'Dobrodošli',
-    
-    // Services page
-    ourServices: 'Naše usluge',
-    
-    // About page
-    aboutUs: 'O nama',
-    
-    // Contact page
-    contactUs: 'Kontaktirajte nas',
-    
-    // Form labels
-    name: 'Ime',
-    email: 'Email',
-    message: 'Poruka',
-  },
-  
   en: {
     // Navigation
     home: 'Home',
@@ -330,6 +300,45 @@ export const translations = {
     name: 'Name',
     email: 'Email',
     message: 'Message',
+
+    // Services URLs
+    manicure: 'Manicure',
+    'permanent-makeup': 'Permanent Makeup',
+    'eyelash-extensions': 'Eyelash Extensions'
+  },
+  zh: {
+    // Navigation
+    home: '首頁',
+    services: '服務項目',
+    about: '關於我們',
+    contact: '聯絡我們',
+    blog: '部落格',
+
+    // Common buttons
+    readMore: '了解更多',
+    sendMessage: '發送訊息',
+    
+    // Home page
+    welcomeTitle: '歡迎蒞臨',
+    
+    // Services page
+    ourServices: '服務內容',
+    
+    // About page
+    aboutUs: '關於我們',
+    
+    // Contact page
+    contactUs: '聯絡方式',
+    
+    // Form labels
+    name: '姓名',
+    email: '電子信箱',
+    message: '留言內容',
+
+    // Services URLs
+    manicure: '美甲',
+    'permanent-makeup': '半永久紋繡',
+    'eyelash-extensions': '美睫嫁接'
   }
 };
 
@@ -338,3 +347,5 @@ export const getTranslation = (language, key) => {
 };
 
 const someArray = [educationsImg, galleryManicure1];
+
+export default translations;

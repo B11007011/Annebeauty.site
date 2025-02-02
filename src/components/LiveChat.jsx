@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const LiveChat = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
@@ -27,56 +26,56 @@ const LiveChat = () => {
 
   return (
     <>
-      <div className={`chat-widget ${isOpen ? 'open' : ''} ${isMinimized ? 'minimized' : ''}`}>
-        <div className="chat-header" onClick={() => setIsMinimized(!isMinimized)}>
-          <div className="header-content">
-            <div className="status-indicator"></div>
-            <span>線上客服</span>
-          </div>
-          <button className="minimize-button">
-            <i className={`fas fa-${isMinimized ? 'expand' : 'minus'}`}></i>
-          </button>
-        </div>
-
+      <div className={`chat-widget ${isOpen ? 'open' : ''}`}>
         <div className="chat-content">
-          <div className="greeting-message">
-            <div className="avatar">
-              <img src="/logo.svg" alt="Anne Beauty" />
+          <div className="chat-header">
+            <div className="header-content">
+              <span>線上客服</span>
             </div>
-            <div className="message">
-              <p className="time">{new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}</p>
+            <button className="close-button" onClick={() => setIsOpen(false)}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <div className="chat-body">
+            <div className="greeting-message">
               <p>{greeting}！歡迎來到 Anne Beauty</p>
-              <p>請選擇您想要的聯絡方式：</p>
+              <p className="subtitle">請選擇您想要的聯絡方式</p>
             </div>
-          </div>
 
-          <div className="platform-buttons">
-            <button 
-              className="platform-button line ripple"
-              onClick={() => openChat('line')}
-            >
-              <i className="fab fa-line"></i>
-              <div className="button-content">
-                <span className="platform-name">LINE</span>
-                <span className="platform-status">通常回覆時間：幾分鐘內</span>
-              </div>
-            </button>
+            <div className="platform-buttons">
+              <button 
+                className="platform-button line"
+                onClick={() => openChat('line')}
+              >
+                <i className="fab fa-line"></i>
+                <div className="button-content">
+                  <span className="platform-name">LINE</span>
+                  <span className="platform-status">通常回覆時間：幾分鐘內</span>
+                </div>
+              </button>
 
-            <button 
-              className="platform-button facebook ripple"
-              onClick={() => openChat('facebook')}
-            >
-              <i className="fab fa-facebook-messenger"></i>
-              <div className="button-content">
-                <span className="platform-name">Messenger</span>
-                <span className="platform-status">通常回覆時間：幾分鐘內</span>
-              </div>
-            </button>
-          </div>
+              <button 
+                className="platform-button messenger"
+                onClick={() => openChat('facebook')}
+              >
+                <i className="fab fa-facebook-messenger"></i>
+                <div className="button-content">
+                  <span className="platform-name">Messenger</span>
+                  <span className="platform-status">通常回覆時間：幾分鐘內</span>
+                </div>
+              </button>
+            </div>
 
-          <div className="business-hours">
-            <i className="far fa-clock"></i>
-            <span>營業時間：週一至週六 10:00-19:00</span>
+            <div className="business-hours">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <span>營業時間：週一至週六 10:00-19:00</span>
+            </div>
           </div>
         </div>
 
@@ -85,146 +84,138 @@ const LiveChat = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle chat"
         >
-          <i className={`fas ${isOpen ? 'fa-times' : 'fa-comments'}`}></i>
+          {isOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          )}
         </button>
       </div>
 
       <style>{`
         .chat-widget {
           position: fixed;
-          bottom: 90px;
+          bottom: 30px;
           right: 30px;
           z-index: 1000;
-          width: 360px;
-          transform: translateY(calc(100% + 20px));
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .chat-widget.open {
-          transform: translateY(0);
-        }
-
-        .chat-widget.minimized .chat-content {
-          display: none;
-        }
-
-        .chat-header {
-          background: #ff69b4;
-          color: white;
-          padding: 16px;
-          border-radius: 12px 12px 0 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .status-indicator {
-          width: 8px;
-          height: 8px;
-          background: #4CAF50;
-          border-radius: 50%;
-        }
-
-        .minimize-button {
-          background: none;
-          border: none;
-          color: white;
-          cursor: pointer;
-          padding: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .chat-content {
+          position: absolute;
+          bottom: calc(100% + 20px);
+          right: 0;
+          width: 320px;
           background: white;
-          border-radius: 0 0 12px 12px;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+          pointer-events: none;
+          transition: all 0.2s ease;
+        }
+
+        .chat-widget.open .chat-content {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          pointer-events: auto;
+        }
+
+        .chat-header {
           padding: 16px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .greeting-message {
           display: flex;
-          gap: 12px;
-          margin-bottom: 20px;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid #f0f0f0;
         }
 
-        .avatar {
-          width: 48px;
-          height: 48px;
-          border-radius: 24px;
-          background: white;
-          overflow: hidden;
+        .header-content span {
+          font-weight: 600;
+          color: #333;
+        }
+
+        .close-button {
+          background: none;
+          border: none;
+          padding: 4px;
+          color: #666;
+          cursor: pointer;
+          border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px;
-          box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+          transition: all 0.2s ease;
         }
 
-        .avatar img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          filter: brightness(0.9);
+        .close-button:hover {
+          background: #f5f5f5;
+          color: #333;
         }
 
-        .avatar img:hover {
-          filter: brightness(1);
-          transform: scale(1.05);
-          transition: all 0.3s ease;
+        .chat-body {
+          padding: 20px;
         }
 
-        .message {
-          flex: 1;
+        .greeting-message {
+          text-align: center;
+          margin-bottom: 20px;
         }
 
-        .time {
+        .greeting-message p {
+          margin: 0;
+          color: #333;
+        }
+
+        .greeting-message .subtitle {
           color: #666;
-          font-size: 0.8rem;
-          margin-bottom: 4px;
+          font-size: 0.9em;
+          margin-top: 4px;
         }
 
         .platform-buttons {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
         }
 
         .platform-button {
           width: 100%;
-          padding: 12px;
+          padding: 12px 16px;
           border: none;
-          border-radius: 8px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           gap: 12px;
           cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition: all 0.2s ease;
           color: white;
+          text-align: left;
         }
 
         .platform-button.line {
-          background: #00B900;
+          background: #06C755;
         }
 
-        .platform-button.facebook {
+        .platform-button.messenger {
           background: #0084FF;
         }
 
         .platform-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          filter: brightness(1.05);
+        }
+
+        .platform-button i {
+          font-size: 20px;
         }
 
         .button-content {
-          text-align: left;
+          flex: 1;
         }
 
         .platform-name {
@@ -234,79 +225,56 @@ const LiveChat = () => {
         }
 
         .platform-status {
-          font-size: 0.8rem;
+          font-size: 0.8em;
           opacity: 0.9;
         }
 
         .business-hours {
-          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
           color: #666;
-          font-size: 0.9rem;
-          padding-top: 12px;
-          border-top: 1px solid #eee;
+          font-size: 0.9em;
+          padding-top: 16px;
+          border-top: 1px solid #f0f0f0;
         }
 
         .chat-toggle {
-          position: absolute;
-          bottom: 100%;
-          right: 0;
-          width: 52px;
-          height: 52px;
-          border-radius: 26px;
-          background: #ff69b4;
+          width: 56px;
+          height: 56px;
+          border-radius: 28px;
+          background: #333;
           border: none;
           color: white;
-          font-size: 22px;
           cursor: pointer;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-          transition: all 0.3s ease;
-          transform: translateY(50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .chat-toggle:hover {
-          transform: translateY(50%) scale(1.1);
-        }
-
-        .ripple {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .ripple:after {
-          content: "";
-          display: block;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          pointer-events: none;
-          background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-          background-repeat: no-repeat;
-          background-position: 50%;
-          transform: scale(10, 10);
-          opacity: 0;
-          transition: transform .5s, opacity 1s;
-        }
-
-        .ripple:active:after {
-          transform: scale(0, 0);
-          opacity: .3;
-          transition: 0s;
+          transform: scale(1.05);
+          background: #222;
         }
 
         @media (max-width: 768px) {
           .chat-widget {
-            width: calc(100% - 60px);
-            right: 30px;
-            bottom: 100px;
-            max-width: 340px;
+            bottom: 20px;
+            right: 20px;
+          }
+
+          .chat-content {
+            width: calc(100vw - 40px);
+            max-width: 320px;
           }
 
           .chat-toggle {
             width: 48px;
             height: 48px;
-            font-size: 20px;
+            border-radius: 24px;
           }
         }
       `}</style>

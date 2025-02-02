@@ -1,4 +1,4 @@
-import { counter } from "../data"
+import { counter } from "../data.jsx"
 
 export default function Benefits() {
   return (

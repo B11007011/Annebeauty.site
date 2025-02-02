@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { navLinks } from "../data";
+import { navLinks } from "../data.jsx";
 import Menu from './Menu';
 import { useLanguage } from '../context/LanguageContext';
 

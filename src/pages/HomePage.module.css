@@ -1,0 +1,33 @@
+.homeMain {
+  overflow: hidden;
+}
+
+.homeMain > * {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.homeMain > *:nth-child(1) { animation-delay: 0.1s; }
+.homeMain > *:nth-child(2) { animation-delay: 0.2s; }
+.homeMain > *:nth-child(3) { animation-delay: 0.3s; }
+.homeMain > *:nth-child(4) { animation-delay: 0.4s; }
+.homeMain > *:nth-child(5) { animation-delay: 0.5s; }
+.homeMain > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeMain > * {
+    animation: none;
+    opacity: 1;
+  }
+} 

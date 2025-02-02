@@ -5,7 +5,22 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+
+    // Scroll to top on route change
+    scrollToTop();
+
+    // Add event listener for history changes
+    window.addEventListener('popstate', scrollToTop);
+
+    return () => {
+      window.removeEventListener('popstate', scrollToTop);
+    };
   }, [pathname]);
 
   return null;

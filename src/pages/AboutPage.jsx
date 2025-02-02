@@ -1,5 +1,5 @@
 import BreadCrumb from "../components/BreadCrumb"
-import { aboutSection } from "../data"
+import { aboutSection } from "../data.jsx"
 import Footer from "../components/Footer"
 import Cta from "../sections/Cta"
 import { Helmet, HelmetProvider } from "react-helmet-async"
@@ -9,11 +9,17 @@ export default function AboutPage() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Anne-美睫美甲 | 關於我們</title>
+        <title>指甲設計 Anne-美甲美睫 | 關於我們</title>
         <meta name="description" content="了解更多關於我們以及我們對指甲護理和美麗的承諾。"/>
-        <meta property="og:title" content="Anne-美睫美甲 | 關於我們" />
+        <link rel="canonical" href="https://Annebeauty.site/about" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="指甲設計 Anne-美甲美睫 | 關於我們" />
         <meta property="og:description" content="了解更多關於我們以及我們對指甲護理和美麗的承諾。" />
-        <meta property="og:url" content="https://naildesign-ljiljanamedovic.com/o-nama" />
+        <meta property="og:url" content="https://Annebeauty.site/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="zh_TW" />
+        <meta property="og:image" content="/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
       <Navbar/>
       <main>

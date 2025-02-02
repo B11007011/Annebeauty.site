@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
-import { services } from '../data';
+import { services } from '../data.jsx';
 
 export default function Services({ showTitle = true }) {
  
@@ -20,7 +20,7 @@ export default function Services({ showTitle = true }) {
               <h3>{service.servicesTitle}</h3>
               <p className="mt-3 mb-4 line-clamp-3">{service.servicesDesc}</p>
               <div className="inline-block">
-                <Link to={`/usluge/${service.pageUrl}`} className="btn-tertiary">
+                <Link to={`/services/${service.pageUrl}`} className="btn-tertiary">
                   <span>閱讀更多</span>
                   <GoArrowRight />
                 </Link>

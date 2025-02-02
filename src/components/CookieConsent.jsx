@@ -21,19 +21,13 @@ const CookieConsent = () => {
     <>
       <div className="cookie-banner">
         <div className="cookie-content">
-          <i className="fas fa-cookie-bite cookie-icon"></i>
           <p>
             我們使用 Cookie 來改善您的瀏覽體驗並提供個人化服務。
-            <br />
-            繼續使用本網站即表示您同意我們的 Cookie 政策。
           </p>
           <div className="cookie-actions">
             <button onClick={acceptCookies} className="accept-button">
               接受
             </button>
-            <a href="/privacy" className="learn-more">
-              了解更多
-            </a>
           </div>
         </div>
       </div>
@@ -41,96 +35,78 @@ const CookieConsent = () => {
       <style jsx>{`
         .cookie-banner {
           position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-          z-index: 1000;
-          animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          bottom: 20px;
+          left: 20px;
+          right: 20px;
+          max-width: 400px;
+          margin: 0 auto;
+          background: rgba(51, 51, 51, 0.95);
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 1050;
+          animation: slideUp 0.3s ease;
         }
 
         .cookie-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 1.5rem;
           display: flex;
           align-items: center;
-          gap: 1.5rem;
-        }
-
-        .cookie-icon {
-          font-size: 2rem;
-          color: #ff69b4;
+          justify-content: space-between;
+          padding: 12px 16px;
+          gap: 16px;
         }
 
         p {
-          flex: 1;
           margin: 0;
-          font-size: 0.95rem;
-          color: #666;
-          line-height: 1.5;
+          font-size: 13px;
+          color: #fff;
+          line-height: 1.4;
         }
 
         .cookie-actions {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
+          flex-shrink: 0;
         }
 
         .accept-button {
-          padding: 0.75rem 2rem;
-          background: #ff69b4;
-          color: white;
+          padding: 6px 16px;
+          background: #fff;
+          color: #333;
           border: none;
-          border-radius: 25px;
+          border-radius: 4px;
+          font-size: 13px;
           font-weight: 500;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
         }
 
         .accept-button:hover {
-          background: #ff4da6;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
-        }
-
-        .learn-more {
-          color: #666;
-          text-decoration: none;
-          font-size: 0.95rem;
-          transition: color 0.3s ease;
-        }
-
-        .learn-more:hover {
-          color: #ff69b4;
+          background: #f0f0f0;
         }
 
         @keyframes slideUp {
           from {
-            transform: translateY(100%);
+            opacity: 0;
+            transform: translateY(20px);
           }
           to {
+            opacity: 1;
             transform: translateY(0);
           }
         }
 
         @media (max-width: 768px) {
+          .cookie-banner {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            border-radius: 0;
+          }
+          
           .cookie-content {
             flex-direction: column;
             text-align: center;
-            padding: 1rem;
-            gap: 1rem;
-          }
-
-          .cookie-actions {
-            flex-direction: column;
-            width: 100%;
-          }
-
-          .accept-button {
-            width: 100%;
+            padding: 12px;
+            gap: 12px;
           }
         }
       `}</style>

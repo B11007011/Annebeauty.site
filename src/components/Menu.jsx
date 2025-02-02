@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from 'framer-motion';
-import { navLinks } from "../data";
+import { navLinks } from "../data.jsx";
 
 const transitionProps = {
     type: 'spring',
@@ -78,10 +78,10 @@ export default function Menu({ open, setOpen }) {
                     {navLinks.map((navLink, index) => (
                         <motion.li key={index} variants={navLinkVariants} className="group relative">
                             <Link to={navLink.url} onClick={() => setOpen(false)}>
-                                {navLink.name.charAt(0).toUpperCase() + navLink.name.slice(1)}
+                                {navLink.name}
                             </Link>
                             {(location.pathname === navLink.url || 
-                      (navLink.url === '/usluge' && location.pathname.startsWith('/usluge'))) && (
+                      (navLink.url === '/services' && location.pathname.startsWith('/services'))) && (
                       <div className="absolute -bottom-1 bg-black h-[1px] w-5"></div>
                     )}
                         </motion.li>

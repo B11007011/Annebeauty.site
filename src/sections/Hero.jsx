@@ -22,7 +22,7 @@ export default function Hero() {
         <div className="flex flex-col items-start gap-6 sm:w-1/2">
           <h1>{t('hero.mainTitle')}</h1>
           <p className="text-xl">{t('hero.subtitle')}</p>
-          <Link to="/usluge/manikir" className="btn btn-outline">
+          <Link to="/services/manikir" className="btn btn-outline">
             <span>{t('hero.learnMore')}</span>
             <GoArrowRight/>
           </Link>

@@ -1,30 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './SocialFeed.module.css';
 
 const SocialFeed = () => {
-  useEffect(() => {
-    const loadFacebookSDK = () => {
-      window.fbAsyncInit = function() {
-        window.FB.init({
-          appId: 'YOUR_FACEBOOK_APP_ID',
-          autoLogAppEvents: true,
-          xfbml: true,
-          version: 'v12.0'
-        });
-      };
-
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/zh_TW/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    };
-
-    loadFacebookSDK();
-  }, []);
-
   return (
     <section className={styles.socialFeedSection}>
       <div className={styles.sectionHeader}>
@@ -41,10 +18,11 @@ const SocialFeed = () => {
           <div className={styles.cardContent}>
             <div className={styles.iframeContainer}>
               <iframe 
-                src={`https://www.instagram.com/a0081606455/embed`}
+                src="https://www.instagram.com/a0081606455/embed"
                 frameBorder="0" 
                 scrolling="no" 
                 allowtransparency="true"
+                title="Instagram Feed"
               ></iframe>
             </div>
           </div>
@@ -56,30 +34,25 @@ const SocialFeed = () => {
             追蹤我們的 Instagram
           </a>
         </div>
-        
+
         <div className={styles.socialCard}>
           <div className={styles.cardHeader}>
             <i className={`fab fa-facebook ${styles.facebookIcon}`}></i>
-            <h3>Facebook 評價</h3>
+            <h3>Facebook 動態</h3>
           </div>
           <div className={styles.cardContent}>
             <div className={styles.iframeContainer}>
-              <div 
-                className="fb-page" 
-                data-href="https://www.facebook.com/profile.php?id=100054297440256"
-                data-tabs="timeline,reviews"
-                data-width="500"
-                data-height="600"
-                data-small-header="false"
-                data-adapt-container-width="true"
-                data-hide-cover="false"
-                data-show-facepile="true"
-              >
-                <blockquote 
-                  cite="https://www.facebook.com/profile.php?id=100054297440256" 
-                  className="fb-xfbml-parse-ignore"
-                ></blockquote>
-              </div>
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100054297440256&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                width="500"
+                height="700"
+                style={{ border: 'none', overflow: 'hidden' }}
+                scrolling="no"
+                frameBorder="0"
+                allowFullScreen={true}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="Facebook Feed"
+              ></iframe>
             </div>
           </div>
           <a href="https://www.facebook.com/profile.php?id=100054297440256" 

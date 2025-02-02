@@ -33,13 +33,13 @@ const services = [
     pageUrl: "edukacije",
     servicesTitle: "培訓課程",
     servicesDesc:
-      "通過我們專業設計的培訓課程提升您的技能和知識，適合初學者和有經驗的專業人��。我們的課程涵蓋美容領域的最新技術和趨勢，從美甲和足部護理，到按摩和面部護理，再到高級半永久化妝課程等多種治療。培訓課程旨在通過由經驗豐富的講師帶領的互動工作坊提供實踐知識和經驗。與我們一起，您不僅會獲得理論知識，還會獲得實踐技能，使您能夠在美容行業建立成功的職業生涯。",
+      "通過我們專業設計的培訓課程提升您的技能和知識，適合初學者和有經驗的專業人。我們的課程涵蓋美容領域的最新技術和趨勢，從美甲和足部護理，到按摩和面部護理，再到高級半永久化妝課程等多種治療。培訓課程旨在通過由經驗豐富的講師帶領的互動工作坊提供實踐知識和經驗。與我們一起，您不僅會獲得理論知識，還會獲得實踐技能，使您能夠在美容行業建立成功的職業生涯。",
     servicesImg: "/images/educations-img.jpg",
     servicesList: [
       {servicesListTitle: '美甲技術課程', servicesListDesc: '本課程涵蓋各種美甲技術，包括凝膠、水晶、希拉克和粉末指甲。學員將學習這些技術的應用、維護和卸除，以及安全措施和衛生知識。'},
       {servicesListTitle: '半永久化妝課程', servicesListDesc: '本培訓專注於半永久化妝的各個方面，包括皮膚準備、色素選擇、應用技術和後續護理。學員將學習如何為眼睛、嘴唇和眉毛創造自然外觀，以及如何管理客戶期望和解決潛在問題。'},
       {servicesListTitle: '美甲藝術課程', servicesListDesc: '本課程涵蓋各種美甲藝術風格和技術，包括繪畫、裝飾、貼紙和特效。學員將獲得創意表達技能，學習如何創造獨特和吸引人的設計。'},
-      {servicesListTitle: '現代美容技術課程', servicesListDesc: '本培���涵蓋美容領域的最新趨勢和技術，包括半永久化妝、美甲和美容行業的創新。學員將有機會了解最新的產品和方法，以及如何在實踐中應用它們。'},
+      {servicesListTitle: '現代美容技術課程', servicesListDesc: '本培涵蓋美容領域的最新趨勢和技術，包括半永久化妝、美甲和美容行業的創新。學員將有機會了解最新的產品和方法，以及如何在實踐中應用它們。'},
     ],
     servicesGallery: [ '/images/gallery-education-1.jpg', '/images/gallery-education-2.jpg', '/images/gallery-education-3.jpg', '/images/gallery-education-4.jpg', '/images/gallery-education-5.jpg', '/images/gallery-education-6.jpg', '/images/gallery-education-7.jpg', '/images/gallery-education-8.jpg', '/images/gallery-education-9.jpg']
   }
@@ -65,7 +65,7 @@ export default function BreadCrumb({ page }) {
                 </li>
                 <li><VscChevronRight className="text-lg text-gray-500"/></li>
                 <li>
-                  <Link to="/usluge">服務</Link>
+                  <Link to="/services">服務</Link>
                 </li>
                 <li><VscChevronRight className="text-lg text-gray-500"/></li>
                 <li>{service.servicesTitle}</li>

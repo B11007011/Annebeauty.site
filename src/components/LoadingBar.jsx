@@ -1,6 +1,8 @@
 import React from 'react';
 
-const LoadingBar = () => {
+const LoadingBar = ({ isLoading }) => {
+  if (!isLoading) return null;
+  
   return (
     <>
       <div className="loading-bar">

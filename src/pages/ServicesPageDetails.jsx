@@ -2,7 +2,7 @@ import Accordion from '../components/Accordion';
 import { useParams } from 'react-router-dom'
 import Gallery from '../components/Gallery';
 import BreadCrumb from "../components/BreadCrumb";
-import { services } from '../data';
+import { services } from '../data.jsx';
 import Footer from "../components/Footer";
 import Cta from "../sections/Cta";
 import Navbar from "../components/Navbar";
@@ -19,11 +19,17 @@ export default function ServicesPageDetails() {
   return (
     <HelmetProvider>
       <Helmet>
-      <title>指甲設計 Ljiljana Medović | 服務</title>
-      <meta name="description" content="探索我們沙龍提供的廣泛專業服務，包括美甲、永久化妝等。"/>
-      <meta property="og:title" content="指甲設計 Ljiljana Medović | 服務" />
-      <meta property="og:description" content="探索我們沙龍提供的廣泛專業服務，包括美甲、永久化妝等。" />
-      <meta property="og:url" content="https://naildesign-ljiljanamedovic.com/usluge" />
+      <title>指甲設計 Anne-美甲美睫 | {service.servicesTitle}</title>
+      <meta name="description" content={service.servicesDesc}/>
+      <link rel="canonical" href={`https://Annebeauty.site/services/${service.pageUrl}`} />
+      <meta name="robots" content="index, follow" />
+      <meta property="og:title" content={`指甲設計 Anne-美甲美睫 | ${service.servicesTitle}`} />
+      <meta property="og:description" content={service.servicesDesc} />
+      <meta property="og:url" content={`https://Annebeauty.site/services/${service.pageUrl}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="zh_TW" />
+      <meta property="og:image" content={service.servicesImg} />
+      <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
     <Navbar/>
     <main>
