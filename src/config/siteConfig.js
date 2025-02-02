@@ -3,13 +3,13 @@ export const appointmentInfo = {
     "message": "無論您是在這裡做美甲還是享受我們的其他服務，您都可以期待卓越的體驗。我們相信信任是我們的首要任務。"
   };
   
-  // export const businessHours = {
-  //   "weekday": "10:00 - 20:00",
-  //   "weekend": "11:00 - 19:00",
-  //   "holiday": "依預約"
-  // };
+export const businessHours = {
+  "weekday": "10:00 - 20:00",
+  "weekend": "11:00 - 19:00",
+  "holiday": "依預約"
+};
   
-  export const contactInfo = {
+export const contactInfo = {
     "phone": "+886-981-606-455",
     "email": "a0081606455@gmail.com",
     "address": "內湖區 Anne 粉專看 美睫 美甲",
