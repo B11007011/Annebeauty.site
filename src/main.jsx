@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, createRoutesFromChildren, matchRoutes } from 'react-router-dom';
 import App from './App';
-import './index.css';
+import './styles.css';
 
 // Global error handler for network requests
 window.addEventListener('unhandledrejection', (event) => {
