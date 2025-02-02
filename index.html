@@ -2,6 +2,17 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="hDiFYddLnPkht_GFRLXrB_-f4ZgJmkxoGP9gBT76NmY" />
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MEASUREMENT_ID');
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="美睫,眼睫毛,接睫毛,日式美睫,美甲,光療美甲,凝膠美甲,紋繡,粉霧眉,韓式霧眉,內湖美睫,台北美甲,美甲教學,手足保養,美容沙龍">
     <title>Anne Beauty 美睫美甲紋繡 | 台北內湖專業美容沙龍 | 日式美睫/韓式霧眉/光療美甲/手足保養 | 美甲教學課程 | Taipei Eyelash & Nail Art</title>
@@ -64,43 +75,81 @@
     {
       "@context": "https://schema.org",
       "@type": "BeautySalon",
-      "name": "Anne美睫美甲紋繡",
-      "image": "https://annebeauty.site/og-image.webp",
-      "description": "專業美睫美甲紋繡服務，提供睫毛嫁接、美甲設計、粉霧眉等美容服務",
+      "name": "Anne Beauty 美睫美甲紋繡",
+      "image": [
+        "https://annebeauty.site/og-image.webp",
+        "https://annebeauty.site/logo.svg"
+      ],
+      "logo": "https://annebeauty.site/logo.svg",
+      "@id": "https://annebeauty.site",
+      "url": "https://annebeauty.site",
+      "telephone": "+886-2-8160-6455",
+      "priceRange": "$$",
+      "description": "專業美睫美甲紋繡服務，提供日式美睫、韓式霧眉、光療美甲。台北內湖專業美容團隊，嚴格衛生把關，打造專屬美麗！",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "民權東路六段180巷6號",
         "addressLocality": "內湖區",
         "addressRegion": "台北市",
+        "postalCode": "114",
         "addressCountry": "TW"
       },
-      "priceRange": "$$",
-      "telephone": "+886-8-1606455",
-      "url": "https://annebeauty.site",
-      "sameAs": [
-        "https://www.instagram.com/a0081606455/",
-        "https://www.facebook.com/profile.php?id=100054297440256",
-        "https://line.me/R/ti/p/@mxn8805y"
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "10:00",
-        "closes": "20:00"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.083418477784395",
+        "longitude": "121.56451967537807"
       },
-      "servesCuisine": [
-        "美睫服務",
-        "美甲服務",
-        "紋繡服務",
-        "手足保養"
-      ]
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "美容服務",
+        "itemListElement": [
+          {
+            "@type": "Service",
+            "name": "美睫服務",
+            "description": "日式美睫、自然款、濃密款、捲翹款"
+          },
+          {
+            "@type": "Service",
+            "name": "美甲服務",
+            "description": "光療美甲、凝膠美甲、手足保養"
+          },
+          {
+            "@type": "Service",
+            "name": "紋繡服務",
+            "description": "韓式霧眉、粉霧眉"
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://line.me/R/ti/p/@mxn8805y",
+          "inLanguage": "zh-TW",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        },
+        "result": {
+          "@type": "Reservation",
+          "name": "美容服務預約"
+        }
+      }
     }
     </script>
 

@@ -30,3 +30,4 @@ To run this project locally, follow these steps:
 2. Install the required dependencies using `npm install`.
 3. Start the development server with `npm run dev`.
 4. Open your browser and navigate to `http://localhost:5173` to use the app.
+https://validator.schema.org/#url=https%3A%2F%2Fannebeauty.site%2F

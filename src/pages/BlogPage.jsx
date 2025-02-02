@@ -16,7 +16,7 @@ const BlogPage = () => {
         <meta property="og:description" content="探索專業美甲師分享的美甲保養秘訣、最新設計趨勢和實用技巧。從基礎護理到時尚設計，讓您的指尖展現完美風采。" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="zh_TW" />
-        <link rel="canonical" href="https://yourdomain.com/blog" />
+        <link rel="canonical" href="https://Annebeauty.site/blog" />
         
         {/* Schema.org markup for Blog */}
         <script type="application/ld+json">
@@ -30,7 +30,7 @@ const BlogPage = () => {
               "name": "Anne美甲美睫",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://yourdomain.com/logo.png"
+                "url": "https://Annebeauty.site/logo.png"
               }
             }
           })}

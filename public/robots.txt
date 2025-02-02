@@ -1,4 +1,19 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
 
-Sitemap: https://naildesign-ljiljanamedovic.com/sitemap.xml
+# Allow images
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.webp$
+
+# Crawl delay
+Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://annebeauty.site/sitemap.xml
