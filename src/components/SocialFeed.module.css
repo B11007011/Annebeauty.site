@@ -150,4 +150,47 @@
     max-width: 100%;
     height: 600px;
   }
+}
+
+.loadingState {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  gap: 1rem;
+}
+
+.loadingState p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.fbFeedContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+
+.fbFeedContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fbFeedContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fbFeedContainer::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 3px;
 } 

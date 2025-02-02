@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, createRoutesFromChildren, matchRoutes } from 'react-router-dom';
 import App from './App';
 import './index.css';
 
@@ -40,10 +40,34 @@ window.addEventListener('online', () => {
   console.log('Internet connection restored.');
 });
 
+// Configure React Router future flags
+const router = {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+};
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter {...router}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// Remove preload links that aren't being used
+const removeUnusedPreloads = () => {
+  const preloads = document.querySelectorAll('link[rel=preload]');
+  preloads.forEach(link => {
+    if (!link.getAttribute('as')) {
+      link.remove();
+    }
+  });
+};
+
+// Wait for window load to check preloads
+window.addEventListener('load', () => {
+  // Give a small delay to allow for resource usage
+  setTimeout(removeUnusedPreloads, 5000);
+});

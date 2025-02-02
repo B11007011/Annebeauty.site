@@ -4,47 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="google-site-verification" content="hDiFYddLnPkht_GFRLXrB_-f4ZgJmkxoGP9gBT76NmY" />
     
-    <!-- Google Analytics -->
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
+    <!-- Compression and Caching Headers -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <meta http-equiv="Content-Encoding" content="gzip">
+    
+    <!-- Google Analytics with Minimal Initial Load -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W89ZLWHKR7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      
-      // Basic configuration
       gtag('config', 'G-W89ZLWHKR7', {
         'send_page_view': true,
         'user_properties': {
           'user_language': navigator.language || navigator.userLanguage
         }
-      });
-
-      // Custom event tracking
-      document.addEventListener('DOMContentLoaded', function() {
-        // Track service button clicks
-        document.querySelectorAll('.book-now-btn').forEach(button => {
-          button.addEventListener('click', function() {
-            gtag('event', 'service_booking_click', {
-              'event_category': 'engagement',
-              'event_label': 'booking_initiated'
-            });
-          });
-        });
-
-        // Track scroll depth
-        let scrollDepthTriggered = new Set();
-        window.addEventListener('scroll', function() {
-          const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-          [25, 50, 75, 100].forEach(threshold => {
-            if (scrollPercent >= threshold && !scrollDepthTriggered.has(threshold)) {
-              scrollDepthTriggered.add(threshold);
-              gtag('event', 'scroll_depth', {
-                'event_category': 'engagement',
-                'event_label': `${threshold}%_scroll`
-              });
-            }
-          });
-        });
       });
     </script>
     
@@ -52,6 +33,9 @@
     <meta name="keywords" content="美睫,眼睫毛,接睫毛,日式美睫,美甲,光療美甲,凝膠美甲,紋繡,粉霧眉,韓式霧眉,內湖美睫,台北美甲,美甲教學,手足保養,美容沙龍">
     <title>Anne Beauty 美睫美甲紋繡 | 台北內湖專業美容沙龍 | 日式美睫/韓式霧眉/光療美甲/手足保養 | 美甲教學課程 | Taipei Eyelash & Nail Art</title>
     <meta name="description" content="Anne美睫美甲紋繡，內湖區專業美容沙龍。提供多款美睫服務：自然款、濃密款、捲翹款，採用優質睫毛材料。專業美甲設計獨特指甲藝術，紋繡服務包括自然立體粉霧眉。特色：專業技術團隊、嚴格衛生把關、客製化服務、溫馨舒適環境。歡迎預約，為您打造專屬美麗造型！"/>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://annebeauty.site/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -64,46 +48,25 @@
     <meta property="og:locale" content="zh_TW">
     <meta property="og:site_name" content="Anne Beauty">
 
-    <!-- Line -->
-    <meta property="line:card" content="summary_large_image">
-    <meta property="line:site" content="@mxn8805y">
-    <meta property="line:title" content="Anne Beauty 美睫美甲紋繡 | 台北內湖">
-    <meta property="line:description" content="專業美睫美甲紋繡服務，日式美睫、韓式霧眉、光療美甲。立即預約！">
-    <meta property="line:image" content="https://annebeauty.site/og-image.webp">
+    <!-- Optimized Font Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" 
+          rel="stylesheet"
+          media="print"
+          onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300..800&display=swap"
+          rel="stylesheet"
+          media="print"
+          onload="this.media='all'">
 
-    <!-- Additional Social Tags -->
-    <meta name="facebook:page_id" content="100054297440256">
-   
+    <!-- Optimized Icon Loading -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          media="print"
+          onload="this.media='all'">
 
-    <!-- Favicons -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://annebeauty.site/" />
-    
-    <!-- Additional Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Anne美睫美甲紋繡">
-    <meta name="geo.region" content="TW-TPE">
-    <meta name="geo.placename" content="Neihu District, Taipei">
-    
-    <!-- Social Media Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Anne美睫美甲紋繡 | 內湖專業美容沙龍">
-    <meta name="twitter:description" content="Anne美睫美甲紋繡，內湖區專業美容沙龍。提供多款美睫服務：自然款、濃密款、捲翹款，採用優質睫毛材料。專業美甲設計獨特指甲藝術，紋繡服務包括自然立體粉霧眉。">
-    <meta name="twitter:image" content="https://annebeauty.site/og-image.webp">
+    <!-- Critical Resources -->
+    <link rel="modulepreload" href="/src/main.jsx" as="script" crossorigin>
+    <link rel="stylesheet" href="/src/index.css">
 
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -118,12 +81,12 @@
       "logo": "https://annebeauty.site/logo.svg",
       "@id": "https://annebeauty.site",
       "url": "https://annebeauty.site",
-      "telephone": "+886-2-8160-6455",
+      "telephone": "+886-981-606-455",
       "priceRange": "$$",
       "description": "專業美睫美甲紋繡服務，提供日式美睫、韓式霧眉、光療美甲。台北內湖專業美容團隊，嚴格衛生把關，打造專屬美麗！",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "民權東路六段180巷6號",
+        "streetAddress": "內湖路一段285巷27弄4號",
         "addressLocality": "內湖區",
         "addressRegion": "台北市",
         "postalCode": "114",
@@ -147,49 +110,18 @@
           "opens": "08:00",
           "closes": "17:00"
         }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "美容服務",
-        "itemListElement": [
-          {
-            "@type": "Service",
-            "name": "美睫服務",
-            "description": "日式美睫、自然款、濃密款、捲翹款"
-          },
-          {
-            "@type": "Service",
-            "name": "美甲服務",
-            "description": "光療美甲、凝膠美甲、手足保養"
-          },
-          {
-            "@type": "Service",
-            "name": "紋繡服務",
-            "description": "韓式霧眉、粉霧眉"
-          }
-        ]
-      },
-      "potentialAction": {
-        "@type": "ReserveAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://line.me/R/ti/p/@mxn8805y",
-          "inLanguage": "zh-TW",
-          "actionPlatform": [
-            "http://schema.org/DesktopWebPlatform",
-            "http://schema.org/MobileWebPlatform"
-          ]
-        },
-        "result": {
-          "@type": "Reservation",
-          "name": "美容服務預約"
-        }
-      }
+      ]
     }
     </script>
-
   </head>
   <body>
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+            src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v19.0" 
+            nonce="random123">
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
