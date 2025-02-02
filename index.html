@@ -5,12 +5,71 @@
     <meta name="google-site-verification" content="hDiFYddLnPkht_GFRLXrB_-f4ZgJmkxoGP9gBT76NmY" />
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W89ZLWHKR7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-MEASUREMENT_ID');
+      
+      // Basic configuration
+      gtag('config', 'G-W89ZLWHKR7', {
+        'send_page_view': true,
+        'user_properties': {
+          'user_language': navigator.language || navigator.userLanguage
+        }
+      });
+
+      // Custom event tracking
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track service button clicks
+        document.querySelectorAll('.book-now-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            gtag('event', 'service_booking_click', {
+              'event_category': 'engagement',
+              'event_label': 'booking_initiated'
+            });
+          });
+        });
+
+        // Track social media clicks
+        document.querySelectorAll('.social-icons a').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'social_click', {
+              'event_category': 'engagement',
+              'event_label': this.href.includes('instagram.com') ? 'instagram' :
+                            this.href.includes('facebook.com') ? 'facebook' :
+                            this.href.includes('line.me') ? 'line' : 'email'
+            });
+          });
+        });
+
+        // Track contact information clicks
+        document.querySelectorAll('.location-details a, .location-details p').forEach(element => {
+          element.addEventListener('click', function() {
+            gtag('event', 'contact_interaction', {
+              'event_category': 'engagement',
+              'event_label': this.textContent.includes('地址') ? 'address_click' :
+                            this.textContent.includes('電話') ? 'phone_click' :
+                            'directions_click'
+            });
+          });
+        });
+
+        // Track scroll depth
+        let scrollDepthTriggered = new Set();
+        window.addEventListener('scroll', function() {
+          const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+          [25, 50, 75, 100].forEach(threshold => {
+            if (scrollPercent >= threshold && !scrollDepthTriggered.has(threshold)) {
+              scrollDepthTriggered.add(threshold);
+              gtag('event', 'scroll_depth', {
+                'event_category': 'engagement',
+                'event_label': `${threshold}%_scroll`
+              });
+            }
+          });
+        });
+      });
     </script>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
