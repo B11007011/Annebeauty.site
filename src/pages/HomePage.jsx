@@ -12,6 +12,7 @@ import BackToTop from "../components/BackToTop";
 import LoadingBar from "../components/LoadingBar";
 //import QuickActions from "../components/QuickActions";
 import CookieConsent from "../components/CookieConsent";
+import BusinessInfo from '../components/BusinessInfo';
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
@@ -59,6 +60,7 @@ export default function HomePage() {
         <Cta/>
         <SocialFeed />
         <BackToTop />
+        <BusinessInfo />
         {/* <QuickActions /> */}
       </main>
       <Footer/>
