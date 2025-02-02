@@ -4,7 +4,6 @@ import Footer from "../components/Footer"
 import Cta from "../sections/Cta"
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import Navbar from "../components/Navbar";
-import BusinessInfo from '../components/BusinessInfo';
 
 export default function AboutPage() {
   return (
@@ -45,7 +44,6 @@ export default function AboutPage() {
         </section>
       </main>
       <Cta/>
-      <BusinessInfo />
       <Footer/>
     </HelmetProvider>
   );
