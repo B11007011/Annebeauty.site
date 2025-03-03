@@ -12,20 +12,20 @@ export default function Footer() {
 
   if (!config) return null;
 
-  // Define quick links
+  // Define quick links with correct Chinese paths
   const quickLinks = [
     { name: '首頁', url: '/' },
-    { name: '服務項目', url: '/usluge' },
-    { name: '關於我們', url: '/o-nama' },
+    { name: '服務項目', url: '/services' },
+    { name: '關於我們', url: '/about' },
     { name: '部落格', url: '/blog' },
-    { name: '聯絡我們', url: '/kontakt' }
+    { name: '聯絡我們', url: '/contact' }
   ];
 
-  // Define services with correct URLs
+  // Define services with correct Chinese paths
   const services = [
-    { name: '美甲', url: '/usluge/manikir' },
-    { name: '半永久紋繡', url: '/usluge/trajna-sminka' },
-    { name: '美睫嫁接', url: '/usluge/edukacije' }
+    { name: '美甲', url: '/services/manicure' },
+    { name: '半永久紋繡', url: '/services/permanent-makeup' },
+    { name: '美睫嫁接', url: '/services/eyelash-extensions' }
   ];
 
   return (
@@ -70,7 +70,9 @@ export default function Footer() {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                  className={`flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors ${
+                    isActive(link.url) ? 'text-[#C4A86D]' : ''
+                  }`}
                 >
                   <FaChevronRight className="mr-2 text-xs" />
                   <span>{link.name}</span>
@@ -87,19 +89,9 @@ export default function Footer() {
                 <Link
                   key={index}
                   to={service.url}
-                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
-                  onClick={(e) => {
-                    if (service.url.includes('#')) {
-                      e.preventDefault();
-                      const id = service.url.split('#')[1];
-                      const element = document.getElementById(id);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        window.location.href = service.url;
-                      }
-                    }
-                  }}
+                  className={`flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors ${
+                    isActive(service.url) ? 'text-[#C4A86D]' : ''
+                  }`}
                 >
                   <FaChevronRight className="mr-2 text-xs" />
                   <span>{service.name}</span>
@@ -112,31 +104,37 @@ export default function Footer() {
           <div className="col-span-1">
             <h3 className="text-lg font-semibold mb-4">聯絡資訊</h3>
             <div className="space-y-4">
-              <a 
-                href={`tel:${config.contactInfo?.phone}`}
-                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
-              >
-                <FaPhone className="mr-3" />
-                <span>{config.contactInfo?.phone}</span>
-              </a>
+              {config.contactInfo?.phone && (
+                <a 
+                  href={`tel:${config.contactInfo.phone}`}
+                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                >
+                  <FaPhone className="mr-3" />
+                  <span>{config.contactInfo.phone}</span>
+                </a>
+              )}
               
-              <a 
-                href={`mailto:${config.contactInfo?.email}`}
-                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
-              >
-                <FaEnvelope className="mr-3" />
-                <span>{config.contactInfo?.email}</span>
-              </a>
+              {config.contactInfo?.email && (
+                <a 
+                  href={`mailto:${config.contactInfo.email}`}
+                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                >
+                  <FaEnvelope className="mr-3" />
+                  <span>{config.contactInfo.email}</span>
+                </a>
+              )}
               
-              <a 
-                href={config.contactInfo?.googleMapUrl}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
-              >
-                <FaMapMarkerAlt className="mr-3" />
-                <span>{config.contactInfo?.address}</span>
-              </a>
+              {config.contactInfo?.address && (
+                <a 
+                  href={config.contactInfo?.googleMapUrl || `https://www.google.com/maps/search/${encodeURIComponent(config.contactInfo.address)}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-[#C4A86D] transition-colors"
+                >
+                  <FaMapMarkerAlt className="mr-3" />
+                  <span>{config.contactInfo.address}</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
